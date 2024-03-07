@@ -1,5 +1,11 @@
-# FMI
-The `master` branch will remain empty on purpose.
+# Full-stack with MERN
+This is the branch for the `Full-stack_MERN` course.
 
-To view source files for any given course check the individuals branches <br>
-Each course branch starts from this Initial commit in `master`
+Each dir should be a seperate project, built with React/Node => run them with `npm` commands
+Obviously, `Node.js` should be installed. If errors occur, try switching Node.js versions
+(node 20 should be used mostly)
+
+---
+# Checkout courses
+To view source files for any other files check out any of the other branches
+`git checkout <branch>`
