@@ -1,0 +1,14 @@
+{
+  "name": "github-api-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "clear && lite-server"
+  },
+  "author": "Genadi Kolev",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "lite-server": "^2.6.1"
+  }
+}
