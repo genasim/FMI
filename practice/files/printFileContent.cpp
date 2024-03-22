@@ -40,7 +40,7 @@ int main() {
     handler.writeTo(std::cout);
 
     std::ofstream copyFile("../practice/tmp/copy.cpp");
-    if (copyFile.is_open()) handler.writeTo(copyFile);
+    handler.writeTo(copyFile);
 
     return 0;
 }
