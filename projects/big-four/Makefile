@@ -7,8 +7,11 @@ BIN_DIR := bin
 
 # Compiler and linker
 CXX := g++
-CXXFLAGS := -I$(SRC_PUBLIC) -Wall -std=c++11 -g
+CXXFLAGS := -Isrc -Wall -std=c++11 -g
 LDFLAGS :=
+
+# Dependency files
+DEP_FILES := $(OBJECTS:.o=.d)
 
 # Ensure the bin directory exists
 $(shell mkdir -p $(BIN_DIR))
@@ -24,20 +27,26 @@ MAIN_OBJ := $(BIN_DIR)/main.o
 # Target executable name
 TARGET := bin/executable.out
 
+# Include all dependency files in the Makefile
+-include $(DEP_FILES)
+
+$(shell find src -type f -name '*.cpp' -exec touch {} +)
 all: $(TARGET)
 
 $(TARGET): $(OBJECTS) $(MAIN_OBJ)
 	$(CXX) $(OBJECTS) $(MAIN_OBJ) -o $@ $(LDFLAGS)
 
 # Rule for compiling source files to object files in bin directory
+# Also generate dependency files
 $(BIN_DIR)/%.o: $(SRC_IMPL)/%.cpp
 	@mkdir -p $(@D)
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+	$(CXX) $(CXXFLAGS) -MMD -MP -c $< -o $@
 
 # Rule for compiling the main.cpp file to its object file in bin directory
+# Also generate a dependency file for the main object
 $(MAIN_OBJ): $(MAIN_SRC)
 	@mkdir -p $(@D)
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+	$(CXX) $(CXXFLAGS) -MMD -MP -c $< -o $@
 
 .PHONY: clean
 clean:
