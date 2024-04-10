@@ -1,0 +1,14 @@
+{
+    "todos": [
+      { "id": "1", "text": "Create TODO App using create-react-app", "status": 3 },
+      { "id": "2", "text": "Create TodoApp function component", "status": 3 },
+      { "id": "3", "text": "Create TodoItem function component", "status": 2 },
+      { "id" : 4, "text": "Create TodoApp function component", "status": 1},
+      { "id" : 5, "text": "Create TodoList function component", "status": 1},
+      { "id" : 6, "text": "Create TodoItem function component", "status": 2},
+      { "id" : 7, "text": "Create TodoInput function component", "status": 1},
+      { "id" : 8, "text": "Connect todos app to backend with json-server", "status": 1},
+      { "id" : 9, "text": "Create TodoFilter function component", "status": 1},
+      { "id" : 10, "text": "Improve component styling", "status": 2}
+    ]
+  }
