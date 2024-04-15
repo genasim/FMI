@@ -1,4 +1,4 @@
-import { TodoCreateDto, TodoStatus } from "./todo-model";
+import { Todo, TodoCreateDto, TodoStatus} from "./todo-model"
 
 const TODOS = [
     new TodoCreateDto('Create TODO App using create-react-app', TodoStatus.Completed),

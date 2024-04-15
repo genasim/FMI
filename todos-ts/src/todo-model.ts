@@ -9,6 +9,7 @@ export class TodoCreateDto {
 }
 
 export class Todo extends TodoCreateDto{
-    static className = "Todo"
+    static className = 'Todo';
     public id: IdType = 0;
+
 }
