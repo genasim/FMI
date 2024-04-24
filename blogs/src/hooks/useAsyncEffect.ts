@@ -11,7 +11,7 @@ export default function useAsyncEffect<V>(
   useEffect(() => {
     let result: V;
     let mounted = true;
-    let maybePromise = effect(() => mounted);
+    const maybePromise = effect(() => mounted);
     Promise.resolve(maybePromise).then((value) => (result = value));
     return () => {
       mounted = false;

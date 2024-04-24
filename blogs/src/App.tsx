@@ -1,19 +1,27 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import './App.css';
 import PostList from './components/PostList';
-import API from './services/api-client';
 import { Post } from './model/post-model';
+import API from './services/api-client';
+// import useEffectOnMount from './hooks/useEffectOnMount';
+import useAsyncEffect from './hooks/useAsyncEffect';
 
 function App() {
   const [posts, setPosts] = useState<Post[]>([]);
-  useEffect(() => {
-    const effect = async () => {
-      const psts = await API.findAll(Post);
-      setPosts(psts);
-    }
-    effect();
-    // return cleanup
-  }, []);
+  // useEffectOnMount(() => {
+  //   const effect = async () => {
+  //     const psts = await API.findAll(Post);
+  //     setPosts(psts);
+  //   }
+  //   effect();
+  //   // return cleanup
+  // });
+
+  useAsyncEffect(async () => {
+    const psts = await API.findAll(Post)
+    setPosts(psts)
+  }, [])
+
   return (
     <>
       <nav className="light-blue lighten-1" role="navigation">
