@@ -1,0 +1,20 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Run current file",
+      "command": "/home/genadi-kolev/.ghcup/bin/runhaskell",
+      "type": "shell",
+      "args": ["${file}"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "group": {
+        "isDefault": true,
+        "kind": "build"
+      },
+      "detail": "Run the currently open file with runhaskell command"
+    }
+  ]
+}
