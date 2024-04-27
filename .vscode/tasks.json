@@ -3,7 +3,7 @@
   "tasks": [
     {
       "label": "Run current file",
-      "command": "/home/genadi-kolev/.ghcup/bin/runhaskell",
+      "command": "~/.ghcup/bin/runhaskell",
       "type": "shell",
       "args": ["${file}"],
       "presentation": {
