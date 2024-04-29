@@ -1,0 +1,60 @@
+{
+  "products": [
+    {
+      "id": "3",
+      "name": "Title",
+      "details": "wefewfwefw",
+      "price": 2001,
+      "category": 0,
+      "imageUrl": "https://images.unsplash.com/photo-1505156868547-9b49f4df4e04?q=80&w=1916&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    {
+      "id": "4",
+      "name": "Another item Title",
+      "details": "Ipsum Portum",
+      "price": 1400,
+      "category": 2,
+      "imageUrl": "https://images.unsplash.com/photo-1505156868547-9b49f4df4e04?q=80&w=1916&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    {
+      "id": "5",
+      "name": "Title",
+      "details": "wefewfwefw",
+      "price": 1000,
+      "category": 2,
+      "imageUrl": "https://images.unsplash.com/photo-1505156868547-9b49f4df4e04?q=80&w=1916&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    {
+      "id": "6",
+      "name": "Title",
+      "details": "wefewfwefw",
+      "price": 1000,
+      "category": 0,
+      "imageUrl": "https://images.unsplash.com/photo-1505156868547-9b49f4df4e04?q=80&w=1916&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    {
+      "id": "5e2d",
+      "name": "New product",
+      "details": "Some desctiption Some desctiption Some desctiption",
+      "price": 1000,
+      "category": 2,
+      "imageUrl": "https://images.unsplash.com/photo-1505156868547-9b49f4df4e04?q=80&w=1916&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    {
+      "id": "ee9b",
+      "name": "ffewfwef",
+      "details": "Some desctiptionSome desctiptionSome desctiption",
+      "price": 1000,
+      "category": 3,
+      "imageUrl": "https://images.unsplash.com/photo-1505156868547-9b49f4df4e04?q=80&w=1916&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    {
+      "id": "2733",
+      "name": "Some product",
+      "details": "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum",
+      "price": 100,
+      "category": 0,
+      "imageUrl": "https://images.unsplash.com/photo-1505156868547-9b49f4df4e04?q=80&w=1916&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    }
+  ]
+}
