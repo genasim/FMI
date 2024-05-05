@@ -47,6 +47,9 @@
     "stdexcept": "cpp",
     "streambuf": "cpp",
     "typeinfo": "cpp",
-    "bitset": "cpp"
+    "bitset": "cpp",
+    "*.tpp": "cpp",
+    "vector.h": "cpp",
+    "fstream": "cpp"
   },
 }
