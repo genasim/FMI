@@ -1,0 +1,363 @@
+{
+  "users": [
+    {
+      "id": "ad24ac",
+      "username": "johndoe",
+      "password": "Pa$$w0rd123!",
+      "bio": "Just a regular user who loves to cook.",
+      "sex": "male",
+      "imageUrl": "https://t4.ftcdn.net/jpg/02/14/74/61/360_F_214746128_31JkeaP6rU0NzzzdFC4khGkmqc8noe6h.jpg",
+      "name": "John Doe",
+      "role": "user",
+      "status": "deactivated",
+      "registerDate": "2023-05-01T14:30:00Z",
+      "lastModDatetime": "2024-05-26T23:37:26.834Z"
+    },
+    {
+      "id": "sjehf2",
+      "name": "Ivan Draganovic",
+      "username": "dracovanko",
+      "password": "dracovanko1!",
+      "sex": "male",
+      "role": "admin",
+      "bio": "Food over admin rights",
+      "status": "active",
+      "registerDate": "2023-04-20T08:15:00Z",
+      "lastModDatetime": "2023-05-10T12:00:00Z"
+    },
+    {
+      "id": "sg32s",
+      "name": "Jane Smith",
+      "username": "janesmith",
+      "password": "Secure*123",
+      "sex": "female",
+      "role": "admin",
+      "bio": "Admin and foodie.",
+      "status": "active",
+      "registerDate": "2023-04-20T08:15:00Z",
+      "lastModDatetime": "2023-05-10T12:00:00Z"
+    },
+    {
+      "id": "93f12",
+      "username": "alicebrown1234",
+      "password": "Brownie#42",
+      "bio": "Cooking enthusiast and recipe creator.",
+      "sex": "female",
+      "imageUrl": "https://www.ctvnews.ca/polopoly_fs/1.1338067.1371997734!/httpImage/image.jpg_gen/derivatives/landscape_1020/image.jpg",
+      "name": "Alice Brown",
+      "role": "user",
+      "status": "suspended",
+      "registerDate": "2023-03-18T09:00:00Z",
+      "lastModDatetime": "2024-05-27T10:46:37.216Z"
+    },
+    {
+      "id": "c00e",
+      "username": "kolio",
+      "password": "Test123!",
+      "bio": "Koleto from Kaspichan",
+      "sex": "male",
+      "imageUrl": "",
+      "name": "Koleto Dobrev",
+      "role": "admin",
+      "status": "active",
+      "registerDate": "2024-05-27T10:45:37.938Z",
+      "lastModDatetime": "2024-05-27T10:45:37.938Z"
+    },
+    {
+      "id": "8aa7",
+      "username": "Mila",
+      "password": "Drago123!",
+      "bio": "My biography",
+      "sex": "female",
+      "imageUrl": "",
+      "name": "Mileva",
+      "role": "admin",
+      "status": "deactivated",
+      "registerDate": "2024-05-27T12:53:36.447Z",
+      "lastModDatetime": "2024-05-27T12:56:26.036Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "axzio",
+      "userId": "sjehf2",
+      "userName": "Ivan Draganovic",
+      "name": "Grilled Cheese Sandwich",
+      "shortDescription": "A classic and easy grilled cheese sandwich.",
+      "cookingTime": 140,
+      "ingredients": [
+        "bread",
+        "cheese",
+        "butter"
+      ],
+      "imageUrl": "https://natashaskitchen.com/wp-content/uploads/2021/08/Grilled-Cheese-Sandwich-SQ.jpg",
+      "description": "Butter the bread, place cheese between slices, and grill until golden brown and cheese is melted.",
+      "tags": [
+        "sandwich",
+        "quick",
+        "comfort food",
+        "new"
+      ],
+      "shareDatetime": "2023-05-05T12:30:00.000Z",
+      "lastModDatetime": "2024-05-27T13:24:26.512Z"
+    },
+    {
+      "id": "jTfui9",
+      "userId": "ad24ac",
+      "userName": "John Doe",
+      "name": "Chicken Curry",
+      "shortDescription": "A spicy and flavorful chicken curry.",
+      "cookingTime": 45,
+      "ingredients": [
+        "chicken",
+        "curry powder",
+        "coconut milk",
+        "onions",
+        "garlic"
+      ],
+      "imageUrl": "https://kitchenofdebjani.com/wp-content/uploads/2023/04/easy-indian-chicken-curry-Recipe-for-beginners-Debjanir-rannaghar.jpg",
+      "description": "Saute onions and garlic, add chicken and curry powder, pour in coconut milk and simmer until chicken is cooked through.",
+      "tags": [
+        "Indian",
+        "spicy",
+        "dinner"
+      ],
+      "shareDatetime": "2023-05-10T12:00:00Z",
+      "lastModDatetime": "2023-05-10T12:00:00Z"
+    },
+    {
+      "id": "vcdsDx",
+      "userId": "sjehf2",
+      "userName": "Ivan Draganovic",
+      "name": "Caesar Salad",
+      "shortDescription": "A fresh and crispy Caesar salad.",
+      "cookingTime": 20,
+      "ingredients": [
+        "romaine lettuce",
+        "croutons",
+        "parmesan cheese",
+        "Caesar dressing",
+        "chicken breast"
+      ],
+      "imageUrl": "https://media.istockphoto.com/id/534139231/photo/healthy-grilled-chicken-caesar-salad.jpg?s=612x612&w=0&k=20&c=TR_sE5S5ChmjFywg3dh_J5V_ha-BcwgTU26BvsgbsjY=",
+      "description": "Chop the lettuce, cook the chicken breast, toss everything with Caesar dressing, and top with croutons and parmesan.",
+      "tags": [
+        "salad",
+        "healthy",
+        "quick"
+      ],
+      "shareDatetime": "2023-05-18T11:00:00.000Z",
+      "lastModDatetime": "2024-05-27T13:25:24.845Z"
+    },
+    {
+      "id": "axU2S1",
+      "userId": "sg32s",
+      "userName": "Jane Smith",
+      "name": "Beef Stroganoff",
+      "shortDescription": "A creamy and savory beef stroganoff.",
+      "cookingTime": 40,
+      "ingredients": [
+        "beef",
+        "mushrooms",
+        "onions",
+        "sour cream",
+        "butter"
+      ],
+      "imageUrl": "https://www.foodandwine.com/thmb/YlvSkk7fsIGE8ywW-bT7Pal9Wh8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/FAW-beef-stroganoff-hero-06-5dc1fb98ed9f4eea97bab613d212eead.jpg",
+      "description": "Cook the beef and set aside. Saute mushrooms and onions, then combine with beef and sour cream to make a rich sauce.",
+      "tags": [
+        "Russian",
+        "dinner",
+        "comfort food"
+      ],
+      "shareDatetime": "2023-05-12T13:30:00Z",
+      "lastModDatetime": "2023-05-12T13:30:00Z"
+    },
+    {
+      "id": "asx2a",
+      "userId": "sjehf2",
+      "userName": "Ivan Draganovic",
+      "name": "Vegetable Stir Fry",
+      "shortDescription": "A quick and healthy vegetable stir fry.",
+      "cookingTime": 25,
+      "ingredients": [
+        "broccoli",
+        "carrots",
+        "bell peppers",
+        "soy sauce",
+        "garlic"
+      ],
+      "imageUrl": "https://st2.depositphotos.com/1000589/10112/i/450/depositphotos_101121174-stock-photo-vegetable-stir-fry-in-a.jpg",
+      "description": "Stir fry the vegetables with garlic and soy sauce until tender-crisp.",
+      "tags": [
+        "Asian",
+        "vegetarian",
+        "quick"
+      ],
+      "shareDatetime": "2023-05-07T09:45:00Z",
+      "lastModDatetime": "2023-05-07T09:45:00Z"
+    },
+    {
+      "id": "1d3rW",
+      "userId": "93f12",
+      "userName": "Alice Brown",
+      "name": "Chocolate Brownies",
+      "shortDescription": "Rich and fudgy chocolate brownies.",
+      "cookingTime": 50,
+      "ingredients": [
+        "chocolate",
+        "butter",
+        "sugar",
+        "eggs",
+        "flour"
+      ],
+      "imageUrl": "https://www.recipetineats.com/wp-content/uploads/2020/03/Brownies_0-SQ.jpg",
+      "description": "Melt chocolate and butter. Mix in sugar and eggs. Fold in flour and bake until set.",
+      "tags": [
+        "dessert",
+        "chocolate",
+        "baking"
+      ],
+      "shareDatetime": "2023-05-05T14:20:00Z",
+      "lastModDatetime": "2023-05-05T14:20:00Z"
+    },
+    {
+      "id": "kolXw2",
+      "userId": "ad24ac",
+      "userName": "John Doe",
+      "name": "French Onion Soup",
+      "shortDescription": "A rich and hearty French onion soup.",
+      "cookingTime": 60,
+      "ingredients": [
+        "onions",
+        "beef broth",
+        "gruyere cheese",
+        "baguette",
+        "butter"
+      ],
+      "imageUrl": "https://recipetineats.com/wp-content/uploads/2018/11/French-Onion-Soup_1.jpg",
+      "description": "Slowly caramelize the onions, add beef broth, top with baguette slices and gruyere cheese, then broil until golden.",
+      "tags": [
+        "French",
+        "soup",
+        "comfort food"
+      ],
+      "shareDatetime": "2023-05-20T17:00:00Z",
+      "lastModDatetime": "2023-05-20T17:00:00Z"
+    },
+    {
+      "id": "afy2s1",
+      "userId": "93f12",
+      "userName": "Alice Brown",
+      "name": "Banana Bread",
+      "shortDescription": "A moist and flavorful banana bread.",
+      "cookingTime": 70,
+      "ingredients": [
+        "bananas",
+        "flour",
+        "sugar",
+        "eggs",
+        "butter"
+      ],
+      "imageUrl": "https://media.istockphoto.com/id/1406235651/photo/fresh-banana-pie-in-a-wooden-dish-on-a-white-marble-background-next-to-fresh-bananas-homemade.jpg?s=612x612&w=0&k=20&c=JwraXPqGDc12nthBhv3c9tafIJQFwKCTAesTO6qm18s=",
+      "description": "Mash bananas and mix with other ingredients. Pour into a loaf pan and bake until a toothpick comes out clean.",
+      "tags": [
+        "dessert",
+        "bread",
+        "baking"
+      ],
+      "shareDatetime": "2023-05-14T15:00:00Z",
+      "lastModDatetime": "2023-05-14T15:00:00Z"
+    },
+    {
+      "id": "acew2g",
+      "userId": "93f12",
+      "userName": "Alice Brown",
+      "name": "Margarita Pizza",
+      "shortDescription": "A simple and delicious margarita pizza.",
+      "cookingTime": 30,
+      "ingredients": [
+        "pizza dough",
+        "tomato sauce",
+        "mozzarella cheese",
+        "basil"
+      ],
+      "imageUrl": "https://images.ctfassets.net/nw5k25xfqsik/64VwvKFqxMWQORE10Tn8pY/200c0538099dc4d1cf62fd07ce59c2af/20220211142754-margherita-9920.jpg",
+      "description": "Spread tomato sauce on pizza dough, top with mozzarella and basil, then bake until crust is golden and cheese is bubbly.",
+      "tags": [
+        "Italian",
+        "pizza",
+        "quick"
+      ],
+      "shareDatetime": "2023-05-21T18:00:00Z",
+      "lastModDatetime": "2023-05-21T18:00:00Z"
+    },
+    {
+      "id": "asfhs",
+      "userId": "sg32s",
+      "userName": "Jane Smith",
+      "name": "Spaghetti Carbonara",
+      "shortDescription": "A classic Italian pasta dish.",
+      "cookingTime": 30,
+      "ingredients": [
+        "spaghetti",
+        "eggs",
+        "pancetta",
+        "parmesan cheese",
+        "black pepper"
+      ],
+      "imageUrl": "https://static01.nyt.com/images/2021/02/14/dining/carbonara-horizontal/carbonara-horizontal-threeByTwoMediumAt2X-v2.jpg",
+      "description": "Cook the spaghetti. In a separate bowl, mix eggs and parmesan. Fry the pancetta until crispy. Combine everything and season with black pepper.",
+      "tags": [
+        "Italian",
+        "pasta",
+        "quick"
+      ],
+      "shareDatetime": "2023-05-15T10:00:00Z",
+      "lastModDatetime": "2023-05-15T10:00:00Z"
+    },
+    {
+      "id": "f7e1",
+      "name": "Brownie",
+      "cookingTime": 20,
+      "description": "Super tasty and easy to make!",
+      "shortDescription": "Tasty!",
+      "imageUrl": "https://sallysbakingaddiction.com/wp-content/uploads/2016/12/homemade-fudge-brownies-3.jpg",
+      "ingredients": [
+        "chocolate",
+        "flour",
+        "choco chips"
+      ],
+      "tags": [
+        "choco",
+        "dessert"
+      ],
+      "userId": "sjehf2",
+      "userName": "Ivan Draganovic",
+      "shareDatetime": "2024-05-27T16:19:29.107Z",
+      "lastModDatetime": "2024-05-27T16:19:29.107Z"
+    },
+    {
+      "id": "009e",
+      "name": "Rakia",
+      "cookingTime": 9999,
+      "description": "Strong spirit for strong fellas !!",
+      "shortDescription": "Spirit of Bulgaria",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Rakia%2C_Sofia_%28_1070644%29.jpg/175px-Rakia%2C_Sofia_%28_1070644%29.jpg",
+      "ingredients": [
+        "grapes",
+        "sugar",
+        "music",
+        "spirit"
+      ],
+      "tags": [
+        "warming",
+        "alchoholic"
+      ],
+      "userId": "sg32s",
+      "userName": "Jane Smith",
+      "shareDatetime": "2024-05-27T18:41:14.199Z",
+      "lastModDatetime": "2024-05-27T18:41:14.199Z"
+    }
+  ]
+}
