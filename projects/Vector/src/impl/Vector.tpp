@@ -27,6 +27,15 @@ Vector<T>::Vector(const Vector<T> &other) {
 }
 
 template <class T>
+Vector<T>::Vector(std::initializer_list<T> init) : _size(init.size()), _capacity(init.size()) {
+    _data = new T[_size];
+    size_t i = 0;
+    for (const T& value : init) {
+        _data[i++] = value;
+    }
+}
+
+template <class T>
 Vector<T>::Vector(size_t size, const T &value) : _size(size), _capacity(size) {
     if (size == 0) {
         _data = nullptr;
@@ -181,7 +190,7 @@ std::ostream &operator<<(std::ostream &out, const Vector<T> &vec) noexcept {
 
 template <class T>
 inline bool Vector<T>::empty() const noexcept {
-    return size == 0;
+    return _size == 0;
 }
 
 template <class T>
@@ -195,8 +204,18 @@ inline size_t Vector<T>::capacity() const noexcept {
 }
 
 template <class T>
+inline const T &Vector<T>::operator[](size_t idx) const {
+    return this->at(idx);
+}
+
+template <class T>
+inline T &Vector<T>::operator[](size_t idx) {
+    return this->at(idx);
+}
+
+template <class T>
 inline const T &Vector<T>::at(size_t idx) const {
-    if (idx >= size) {
+    if (idx >= _size) {
         throw std::out_of_range("Vector<T>::at(size_t) -> Index out of bounds");
     }
     return _data[idx];
@@ -204,7 +223,7 @@ inline const T &Vector<T>::at(size_t idx) const {
 
 template <class T>
 inline T &Vector<T>::at(size_t idx) {
-    if (idx >= size) {
+    if (idx >= _size) {
         throw std::out_of_range("Vector<T>::at(size_t) -> Index out of bounds");
     }
     return _data[idx];
@@ -418,7 +437,9 @@ inline typename Vector<T>::iterator Vector<T>::end() const {
 }
 
 template <class T>
-bool Vector<T>::contains(const T &element) {
+bool Vector<T>::contains(const T &element) const {
+    if (_data == nullptr) return false;
+
     for (const T &item : *this) {
         if (item == element) return true;
     }
