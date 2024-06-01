@@ -42,27 +42,27 @@ String& String::operator=(String&& other) noexcept {
     return *this;
 }
 
-inline bool String::operator==(const String& other) const noexcept {
+bool String::operator==(const String& other) const noexcept {
     return compare(other) == 0;
 }
 
-inline bool String::operator!=(const String& other) const noexcept {
+bool String::operator!=(const String& other) const noexcept {
     return !(*this == other);
 }
 
-inline bool String::operator>(const String& other) const noexcept {
+bool String::operator>(const String& other) const noexcept {
     return compare(other) > 0;
 }
 
-inline bool String::operator<(const String& other) const noexcept {
+bool String::operator<(const String& other) const noexcept {
     return compare(other) < 0;
 }
 
-inline bool String::operator>=(const String& other) const noexcept {
+bool String::operator>=(const String& other) const noexcept {
     return compare(other) >= 0;
 }
 
-inline bool String::operator<=(const String& other) const noexcept {
+bool String::operator<=(const String& other) const noexcept {
     return compare(other) <= 0;
 }
 
@@ -104,8 +104,6 @@ void String::reserve(size_t to) {
 
 void String::_free() noexcept {
     delete[] _data;
-    _length = 0;
-    _capacity = 0;
 }
 
 void String::_copy(const String& other) {
@@ -147,10 +145,8 @@ void String::append(const char* str) {
 }
 
 void String::push_back(char ch) {
-    if (_length + 1 > _capacity) {
-        resize(_capacity * 2);
-    }
-    _data[_length++] = ch;
+    resize(_length + 1);
+    _data[_length - 1] = ch;
     _data[_length] = '\0';
 }
 
@@ -185,4 +181,12 @@ std::istream& operator>>(std::istream& in, String& str) {
     in >> buffer;
     str = String(buffer);
     return in;
+}
+
+char* operator+(const String& str, const char* cstr) { 
+    return strcat((char*)str.c_str(), cstr);
+}
+
+char* operator+(char* cstr, const String& str) {
+    return strcat(cstr, str.c_str());
 }

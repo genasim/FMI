@@ -26,6 +26,8 @@ class String {
 
     friend std::ostream &operator<<(std::ostream &out, const String &str);
     friend std::istream &operator>>(std::istream &in, String &str);
+    friend char* operator+(const String& str, const char* cstr);
+    friend char* operator+(char* cstr, const String& str);
 
     bool operator==(const String &other) const noexcept;
     bool operator!=(const String &other) const noexcept;
