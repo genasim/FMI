@@ -1,4 +1,5 @@
 #include "Triangle.h"
+#include "visitors/Visitor.h"
 
 #include <cmath>
 
@@ -29,18 +30,16 @@ double Triangle::getPerimeter() const noexcept {
     return sideA + sideB + sideC;
 }
 
-void Triangle::serialize(std::ostream &out) const noexcept {
-    out << "Triangle ";
-    for (auto &&point : _points) {
-        out << point << ' ';
-    }
-    out << std::endl;
-}
+Vector<Point> Triangle::points() const noexcept { return _points; }
 
 void Triangle::deserialize(std::istream &in) noexcept {
     for (auto &point : _points) {
         in >> point;
     }
+}
+
+void Triangle::accept(Visitor &visitor) noexcept {
+    visitor.visit(*this);
 }
 
 inline Shape *Triangle::copy() const { return new Triangle(*this); }

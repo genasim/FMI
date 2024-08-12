@@ -12,7 +12,8 @@ class Vector {
     Vector<T>& operator=(const Vector<T>&);
     Vector<T>(Vector<T>&&);
     Vector<T>& operator=(Vector<T>&&);
-
+    Vector(std::initializer_list<T> init);
+    
     void push_back(const T&);
     void push_back(T&&);
     T pop_back() noexcept;
@@ -85,4 +86,4 @@ class Vector {
     bool contains(const T&) const;
 };
 
-#include <../impl/Vector.tpp>
+#include "../../impl/data/Vector.tpp"

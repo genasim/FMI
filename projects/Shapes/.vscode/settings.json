@@ -50,6 +50,7 @@
     "bitset": "cpp",
     "*.tpp": "cpp",
     "vector.h": "cpp",
-    "fstream": "cpp"
+    "fstream": "cpp",
+    "optional": "cpp"
   },
 }

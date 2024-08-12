@@ -11,9 +11,11 @@ class Rect : public Shape {
     double getArea() const noexcept override;
     double getPerimeter() const noexcept override;
 
-    void serialize(std::ostream&) const noexcept override;
+    Vector<Point> points() const noexcept;
+
     void deserialize(std::istream&) noexcept override;
-    
+
+    void accept(Visitor&) noexcept override;
     Shape* copy() const override;
 
    private:

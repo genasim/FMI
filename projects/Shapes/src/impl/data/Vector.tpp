@@ -27,6 +27,15 @@ Vector<T>::Vector(const Vector<T> &other) {
 }
 
 template <class T>
+Vector<T>::Vector(std::initializer_list<T> init) : _size(init.size()), _capacity(init.size()) {
+    _data = new T[_size];
+    size_t i = 0;
+    for (const T& value : init) {
+        _data[i++] = value;
+    }
+}
+
+template <class T>
 Vector<T>::Vector(size_t size, const T &value) : _size(size), _capacity(size) {
     if (size == 0) {
         _data = nullptr;

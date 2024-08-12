@@ -1,5 +1,7 @@
 #include "Rect.h"
 
+#include "visitors/Visitor.h"
+
 Rect::Rect() : Rect({0, 0}, {1, 1}) {}
 
 Rect::Rect(Point a, Point b) { _fillPoints(a, b); }
@@ -14,9 +16,7 @@ inline double Rect::getPerimeter() const noexcept {
                 Point::distance(_points[0], _points[3]));
 }
 
-inline void Rect::serialize(std::ostream &out) const noexcept {
-    out << "Rect " << _points[0] << ' ' << _points[2] << std::endl;
-}
+Vector<Point> Rect::points() const noexcept { return _points; }
 
 inline void Rect::deserialize(std::istream &in) noexcept {
     Point a, b;
@@ -25,6 +25,8 @@ inline void Rect::deserialize(std::istream &in) noexcept {
     _points.clear();
     _fillPoints(a, b);
 }
+
+void Rect::accept(Visitor &visitor) noexcept { visitor.visit(*this); }
 
 Shape *Rect::copy() const { return new Rect(*this); }
 

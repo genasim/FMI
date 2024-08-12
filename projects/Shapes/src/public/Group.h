@@ -1,4 +1,5 @@
 #pragma once
+
 #include "Shape.h"
 
 class Group : public Shape {
@@ -6,6 +7,9 @@ class Group : public Shape {
     Group();
     Group(Shape**, size_t);
     Group(const Group&);
+    Group(const Vector<Shape*>&);
+    Group(Vector<Shape*>&&);
+
     Group& operator=(const Group&);
     Group(Group&&) = default;
     Group& operator=(Group&&) = default;
@@ -13,12 +17,15 @@ class Group : public Shape {
     void add(Shape* const&) noexcept;
     void add(Shape*&&) noexcept;
 
+    Vector<Shape*> shapes() const noexcept;
+    size_t size() const noexcept;
+
     double getArea() const noexcept override;
     double getPerimeter() const noexcept override;
 
-    void serialize(std::ostream&) const noexcept override;
     void deserialize(std::istream&) noexcept override;
 
+    void accept(Visitor&) noexcept override;
     Shape* copy() const override;
 
     Vector<Shape*>::iterator begin() const noexcept;

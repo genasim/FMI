@@ -2,6 +2,7 @@
 
 #include <string>
 
+#include "visitors/Visitor.h"
 #include "Shape.h"
 
 Group::Group() : _shapes() {}
@@ -14,6 +15,10 @@ Group::Group(Shape **arr, size_t size) : Group() {
 }
 
 Group::Group(const Group &other) { _copyFrom(other); }
+
+Group::Group(const Vector<Shape*> &vector) : _shapes(vector) {}
+
+Group::Group(Vector<Shape*> &&vector) : _shapes(std::move(vector)) {}
 
 Group &Group::operator=(const Group &other) {
     if (this != &other) {
@@ -31,6 +36,10 @@ void Group::add(Shape *&&shape) noexcept {
     _shapes.push_back(shape);
 }
 
+Vector<Shape *> Group::shapes() const noexcept { return _shapes; }
+
+size_t Group::size() const noexcept { return _shapes.size(); }
+
 double Group::getArea() const noexcept {
     double area = 0;
     for (auto &&shape : *this) {
@@ -47,13 +56,6 @@ double Group::getPerimeter() const noexcept {
     return perimeter;
 }
 
-void Group::serialize(std::ostream &out) const noexcept {
-    out << "Group " << _shapes.size() << std::endl;
-    for (auto &&shape : *this) {
-        shape->serialize(out);
-    }
-}
-
 void Group::deserialize(std::istream &in) noexcept {
     size_t size;
     in >> size;
@@ -66,6 +68,8 @@ void Group::deserialize(std::istream &in) noexcept {
         ptr->deserialize(in);
     }
 }
+
+void Group::accept(Visitor &visitor) noexcept { visitor.visit(*this); }
 
 Shape *Group::copy() const { return new Group(*this); }
 
