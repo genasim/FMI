@@ -1,16 +1,14 @@
-# FMI
-The `master` branch will remain empty on purpose.
+# Data Structures and Algorithms
+This is the branch for the `Data Structures and Algorithms` course  
+  
+When using ***VSCode***:
+- If you want to build any of the files in the `cpp-files` dir, open `cpp-files` as your workspace folder and use the build task to compile the current active file with `gcc`, using `Ctr-Shift-B`. This generates the output binary in the `./bin/` dir
+- If you want to build any of the projects in the `projects` dir, use the `Makefile` there (you can also open each of the projects as a workspace folder and use VSCode's commands)  
 
-To view source files for any given course check the individuals branches  
-Each course branch starts from the empty project folder in `master`  
-
-
-# Course branches Table
-| Course | Branch |
-| :---: | :---: |
-| *Intro to programming* | `intro-programming` |
-| *Object-oriented programming* | `oop` |
-| *Data Structures and Algorithms* | `dsa` |
-| *Functional programming* | `func-programming` |
-| *Full-stack with MERN* | `full-stack-mern` |
-| *JavaScript Advanced* | `js-advanced` |
+---
+# Checkout courses
+To view source files for any other files check out any of the other branches  
+```bash
+git branch -r # List of all branches 
+git checkout <branch>
+```
