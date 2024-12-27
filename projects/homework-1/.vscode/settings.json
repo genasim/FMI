@@ -1,6 +1,6 @@
 {
   "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Google, IndentWidth: 4 }",
-  "C_Cpp.default.compilerPath": "/usr/bin/g++",
+  "C_Cpp.default.compilerPath": "/usr/bin/gcc",
   "files.associations": {
     "array": "cpp",
     "atomic": "cpp",

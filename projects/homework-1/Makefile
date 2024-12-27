@@ -4,8 +4,8 @@ SRC_PUBLIC := src/public
 BIN_DIR := bin
 
 # Compiler and linker
-CXX := g++
-CXXFLAGS := -I$(SRC_PUBLIC) -Wall -std=c++11 -g
+CXX := $(shell brew --prefix gcc)/bin/g++-14
+CXXFLAGS := -I$(SRC_PUBLIC) -Wall -std=c++17 -g
 LDFLAGS :=
 
 # Ensure the bin directory exists
