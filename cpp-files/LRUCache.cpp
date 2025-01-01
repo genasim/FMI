@@ -85,9 +85,6 @@ int poll_cache(LRUCache<int, int>& cache, int arg) {
 
 
 int main() {
-    std::list<int> list = {1, 2, 3, 4, 5, 6, 7, 8};
-    list.splice(list.cbegin(), list, std::prev(list.end()));
-    
     LRUCache<int, int> cache(2);
     int res;
     
