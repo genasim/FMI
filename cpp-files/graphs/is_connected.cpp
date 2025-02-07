@@ -53,7 +53,8 @@ bool is_connected_bfs(const Graph<std::string>& graph, const std::string& start,
 }
 
 bool is_connected_dfs(const Graph<std::string>& graph, const std::string& start, const std::string& dest) {
-    auto helper = [](auto&& self, const Graph<std::string>& graph, const std::string& curr, const std::string& dest, std::unordered_set<std::string>& visited) {
+    std::unordered_set<std::string> visited;
+    auto helper = [&](auto&& self, const std::string& curr) {
         if (curr == dest)
             return true;
 
@@ -62,15 +63,14 @@ bool is_connected_dfs(const Graph<std::string>& graph, const std::string& start,
         visited.insert(curr);
 
         for (const std::string& neighbour : graph.at(curr)) {
-            if (self(self, graph, neighbour, dest, visited))
+            if (self(self, neighbour))
                 return true;
         }
         
         return false;
     };
     
-    std::unordered_set<std::string> visited;
-    return helper(helper, graph, start, dest, visited);
+    return helper(helper, start);
 }
 
 int main() {

@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <fstream>
 #include <iostream>
 #include <optional>
@@ -47,7 +48,7 @@ vector<T> shortest_path_bfs(const Graph<T>& graph, const T& start,
             }
 
             if (visited.find(neighbour) == visited.end()) {
-                queue.push(neighbour);
+                queue.emplace(neighbour);
                 visited[neighbour] = curr;
             }
         }
@@ -58,9 +59,10 @@ vector<T> shortest_path_bfs(const Graph<T>& graph, const T& start,
     vector<T> path = {end};
     optional<T> parent = visited[end];
     while (parent.has_value()) {
-        path.insert(path.cbegin(), parent.value());
+        path.push_back(parent.value());
         parent = visited[parent.value()];
     }
+    reverse(path.begin(), path.end());
     return path;
 }
 
@@ -68,32 +70,38 @@ template <class T, class Weight>
 using WeightedGraph = unordered_map<T, unordered_map<T, Weight>>;
 
 template <class T, class Weight>
-vector<T> shortest_path_dijkstra(const WeightedGraph<T, Weight>& graph,
-                                 const T& start, const T& end) {
-    if (start == end) return {start};
+pair<vector<T>, Weight> shortest_path_dijkstra(
+    const WeightedGraph<T, Weight>& graph, const T& start, const T& end) {
+    if (start == end) return {};
 
     struct NodeMetadata {
         optional<Weight> distance;
         optional<T> parent;
     };
 
+    struct Compare {
+        bool operator()(const pair<Weight, T>& a, const pair<Weight, T>& b) {
+            return a.first > b.first;
+        }
+    };
+
     unordered_map<T, NodeMetadata> visited;
-    priority_queue<pair<Weight, T>, vector<pair<Weight, T>>, greater<>> queue;
+    priority_queue<pair<Weight, T>, vector<pair<Weight, T>>, Compare> queue;
 
     queue.emplace(Weight{}, start);
     visited[start] = {Weight{}, nullopt};
 
     while (!queue.empty()) {
-        auto [current_distance, current] = queue.top();
+        auto [current_distance, curr] = queue.top();
         queue.pop();
 
-        if (current == end) break;
+        if (curr == end) break;
 
-        for (const auto& [neighbor, weight] : graph.at(current)) {
+        for (const auto& [neighbor, weight] : graph.at(curr)) {
             Weight new_distance = current_distance + weight;
             if (!visited[neighbor].distance ||
                 new_distance < visited[neighbor].distance.value()) {
-                visited[neighbor] = {new_distance, current};
+                visited[neighbor] = {new_distance, curr};
                 queue.emplace(new_distance, neighbor);
             }
         }
@@ -101,33 +109,38 @@ vector<T> shortest_path_dijkstra(const WeightedGraph<T, Weight>& graph,
 
     if (!visited[end].distance) return {};
 
-    // vector<T> path;
-    // for (T at = end; at.has_value(); at = visited[at].parent.value_or(T{})) {
-    //     path.push_back(at);
-    //     if (!visited[at].parent) break;
-    // }
-    // reverse(path.begin(), path.end());
-    // return path;
+    vector<T> path = {end};
+    optional<T> parent = visited[end].parent;
+    while (parent.has_value()) {
+        path.push_back(parent.value());
+        parent = visited[parent.value()].parent;
+    }
+    reverse(path.begin(), path.end());
+    return {path, visited[end].distance.value()};
 }
 
 int main() {
+    cout << "Path finding in weighted graph using Dijkstra's algorithm" << endl;
     {
         WeightedGraph<string, int> graph = {
-            {"A", {{"B", 1}, {"E", 3}}}, {"B", {{"A", 1}, {"C", 2}, {"D", 5}}},
+            {"A", {{"B", 1}, {"E", 3}, {"D", 5}}}, {"B", {{"A", 1}, {"C", 2}, {"D", 6}}},
             {"C", {{"A", 4}, {"D", 1}}}, {"D", {{"B", 5}, {"C", 1}}},
             {"E", {{"C", 2}}},           {"F", {}}};
 
         string start = "A", dest = "D";
-        auto path1 = shortest_path_dijkstra(graph, start, dest);
+        auto [path1, cost1] = shortest_path_dijkstra(graph, start, dest);
         cout << "Path from " << start << " to " << dest << ": " << path1
-             << endl;
+             << " | cost: " << cost1 << endl;
 
         start = "A", dest = "F";
-        auto path2 = shortest_path_dijkstra(graph, start, dest);
+        auto [path2, cost2] = shortest_path_dijkstra(graph, start, dest);
         cout << "Path from " << start << " to " << dest << ": " << path2
-             << endl;
+             << " | cost: " << cost2 << endl;
     }
 
+    cout << endl << "============================" << endl << endl;
+
+    cout << "Path finding in unweighted graph using standard BFS" << endl;
     {
         Graph<string> graph = {{"A", {"B", "E"}}, {"B", {"A", "C"}},
                                {"C", {"A", "D"}}, {"D", {"B", "C"}},
