@@ -23,7 +23,7 @@ void free_tree(Node* curr) {
 
 int getKthElement(Node* root, unsigned k) {
     unsigned count = 0;
-    auto helper = [k, &count](auto&& self, Node* curr) -> int {
+    auto traverser = [k, &count](auto&& self, Node* curr) -> int {
         if (curr == nullptr)
             return -1;
 
@@ -35,14 +35,22 @@ int getKthElement(Node* root, unsigned k) {
         int right = self(self, curr->right);
         return right;
     };
-    return helper(helper, root);
+    return traverser(traverser, root);
 }
 
 int main() {
     Node* tree = new Node(
         50,
-        new Node(30, new Node(20, new Node(10), new Node(25)), new Node(40)),
-        new Node(70, new Node(60), new Node(80, nullptr, new Node(90))));
+        new Node(30, 
+            new Node(20, 
+                new Node(10), 
+                new Node(25)), 
+            new Node(40)),
+        new Node(70, 
+            new Node(60), 
+            new Node(80, 
+                nullptr, 
+                new Node(90))));
 
     cout << getKthElement(tree, 5) << endl;
     cout << getKthElement(tree, 3) << endl;
