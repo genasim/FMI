@@ -14,3 +14,4 @@ Each course branch starts from the empty project folder in `master`
 | *Functional programming* | `func-programming` |
 | *Full-stack with MERN* | `full-stack-mern` |
 | *JavaScript Advanced* | `js-advanced` |
+| *Applied OOP* | `aoop` |
