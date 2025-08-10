@@ -1,50 +1,52 @@
-#include <unordered_map>
-#include <map>
-#include <unordered_set>
-#include <string>
-
-#include <vector>
-#include <queue>
-
-#include <iostream>
+#define DOCTEST_CONFIG_IMPLEMENT
 #include <fstream>
+#include <iostream>
+#include <map>
+#include <queue>
+#include <string>
+#include <unordered_map>
+#include <unordered_set>
+#include <vector>
+
+#include "../lib/doctest.h"
+
+using namespace std;
 
 template <class T>
-using Graph = std::unordered_map<T, std::unordered_set<T>>;
+using Graph = unordered_map<T, unordered_set<T>>;
 
-std::ostream& operator<<(std::ostream& os, const Graph<std::string>& graph) {
+ostream& operator<<(ostream& os, const Graph<string>& graph) {
     for (const auto& [vertex, neighbours] : graph) {
         os << vertex << " -> ";
         for (const auto& neighbour : neighbours) {
             os << neighbour << " ";
         }
-        os << std::endl;
+        os << endl;
     }
     return os;
 }
 
-bool is_connected_bfs(const Graph<std::string>& graph, const std::string& start, const std::string& dest) {
-    if (start == dest)
+bool is_connected_bfs(const Graph<string>& graph, const string& start,
+                      const string& dest) {
+    if (start == dest) 
         return true;
-    
-    std::queue<std::string> queue;
-    std::unordered_set<std::string> visited;
+
+    queue<string> queue;
+    unordered_set<string> visited;
 
     queue.push(start);
     visited.insert(start);
-    
-    while(!queue.empty()) {
-        auto curr = queue.front();
+    while (!queue.empty()) {
+        const string curr = queue.front();
         queue.pop();
 
-        for (const std::string& neighbour: graph.at(curr))
-        {
+        for (const auto& neighbour : graph.at(curr)) {
             if (neighbour == dest)
                 return true;
-
+            
             if (visited.find(neighbour) == visited.end()) {
-                visited.insert(neighbour);
                 queue.push(neighbour);
+                visited.insert(neighbour);
             }
         }
     }
@@ -52,9 +54,13 @@ bool is_connected_bfs(const Graph<std::string>& graph, const std::string& start,
     return false;
 }
 
-bool is_connected_dfs(const Graph<std::string>& graph, const std::string& start, const std::string& dest) {
-    std::unordered_set<std::string> visited;
-    auto helper = [&](auto&& self, const std::string& curr) {
+bool is_connected_dfs(const Graph<string>& graph, const string& start,
+                      const string& dest) {
+    if (start == dest)
+        return true;
+
+    unordered_set<string> visited;
+    auto helper = [&](auto&& self, string curr) -> bool {
         if (curr == dest)
             return true;
 
@@ -62,46 +68,46 @@ bool is_connected_dfs(const Graph<std::string>& graph, const std::string& start,
             return false;
         visited.insert(curr);
 
-        for (const std::string& neighbour : graph.at(curr)) {
+        for (const string& neighbour : graph.at(curr)) {
             if (self(self, neighbour))
                 return true;
         }
         
         return false;
     };
-    
+
     return helper(helper, start);
 }
 
-int main() {
-    Graph<std::string> graph = {
-        {"A", {"B", "C"}},
-        {"B", {"A", "D"}},
+TEST_CASE("Graph traversals") {
+    Graph<string> graph = {
+        {"A", {"B", "C"}}, 
+        {"B", {"A", "D"}}, 
         {"C", {"A", "D", "K"}},
         {"D", {"B", "C"}},
-        {"E", {}},
-        {"K", {"C"}}
-    };
+        {"E", {}}, 
+        {"K", {"C"}}};
+        
+        CHECK(is_connected_bfs(graph, "B", "C"));
+        CHECK(is_connected_dfs(graph, "B", "C"));
 
-    std::cout << graph << std::endl;
+        CHECK(!is_connected_bfs(graph, "E", "A"));
+        CHECK(!is_connected_dfs(graph, "E", "A"));
+        
+        CHECK(is_connected_bfs(graph, "A", "A"));
+        CHECK(is_connected_dfs(graph, "A", "A"));
+        
+        CHECK(is_connected_bfs(graph, "A", "B"));
+        CHECK(is_connected_dfs(graph, "A", "B"));
+        
+        CHECK(!is_connected_bfs(graph, "C", "E"));
+        CHECK(!is_connected_dfs(graph, "C", "E"));
+        
+        CHECK(is_connected_bfs(graph, "K", "B"));
+        CHECK(is_connected_dfs(graph, "K", "B"));
+}
 
-    std::cout << "BFS Traversal" << std::endl;
-    std::cout << "B to C: " << is_connected_bfs(graph, "B", "C") << std::endl;
-    std::cout << "E to A: " << is_connected_bfs(graph, "E", "A") << std::endl;
-    std::cout << "A to A: " << is_connected_bfs(graph, "A", "A") << std::endl;
-    std::cout << "A to B: " << is_connected_bfs(graph, "A", "B") << std::endl;
-    std::cout << "C to E: " << is_connected_bfs(graph, "C", "E") << std::endl;
-    std::cout << "K to B: " << is_connected_bfs(graph, "K", "B") << std::endl;
-
-    std::cout << "=======================" << std::endl;
-
-    std::cout << "DFS Traversal" << std::endl;
-    std::cout << "B to C: " << is_connected_dfs(graph, "B", "C") << std::endl;
-    std::cout << "E to A: " << is_connected_dfs(graph, "E", "A") << std::endl;
-    std::cout << "A to A: " << is_connected_dfs(graph, "A", "A") << std::endl;
-    std::cout << "A to B: " << is_connected_dfs(graph, "A", "B") << std::endl;
-    std::cout << "C to E: " << is_connected_dfs(graph, "C", "E") << std::endl;
-    std::cout << "K to B: " << is_connected_dfs(graph, "K", "B") << std::endl;
-
+int main() {
+    doctest::Context().run();
     return 0;
 }

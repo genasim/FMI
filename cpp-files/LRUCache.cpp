@@ -2,29 +2,29 @@
 #include <list>
 #include <optional>
 
-template<class Key, class Value>
+template<class Node, class Value>
 class LRUCache {
-    using Cache = std::list<std::pair<Key, Value>>;
+    using Cache = std::list<std::pair<Node, Value>>;
     
 public:
     explicit LRUCache(size_t capacity);
     
-    std::optional<Value> get(const Key& key) noexcept;
-    void put(const Key& key, const Value& value) noexcept;
+    std::optional<Value> get(const Node& key) noexcept;
+    void put(const Node& key, const Value& value) noexcept;
     
 private:
     Cache cache;
-    std::unordered_map<Key, typename Cache::iterator> cacheMap;
+    std::unordered_map<Node, typename Cache::iterator> cacheMap;
     size_t capacity;
 };
 
 
 
-template<class Key, class Value>
-LRUCache<Key, Value>::LRUCache(size_t capacity) : capacity(capacity) {}
+template<class Node, class Value>
+LRUCache<Node, Value>::LRUCache(size_t capacity) : capacity(capacity) {}
 
-template<class Key, class Value>
-std::optional<Value> LRUCache<Key, Value>::get(const Key& key) noexcept {
+template<class Node, class Value>
+std::optional<Value> LRUCache<Node, Value>::get(const Node& key) noexcept {
     auto it = cacheMap.find(key);
     if (it == cacheMap.end()) {
         return std::nullopt;
@@ -35,8 +35,8 @@ std::optional<Value> LRUCache<Key, Value>::get(const Key& key) noexcept {
     return std::make_optional(dataIt->second);
 }
 
-template<class Key, class Value>
-void LRUCache<Key, Value>::put(const Key& key, const Value& value) noexcept {
+template<class Node, class Value>
+void LRUCache<Node, Value>::put(const Node& key, const Value& value) noexcept {
     auto it = cacheMap.find(key);
     if (it != cacheMap.end()) {
         cache.erase(it->second);
