@@ -1,0 +1,20 @@
+{
+  "name": "C++ Launch",
+  "type": "cppdbg",
+  "version": "0.2.0",
+  "request": "launch",
+  "configurations": [
+    {
+      "name": "(lldb) Attach",
+      "type": "cppdbg",
+      "preLaunchTask": "Build Project",
+      "stopAtEntry": false,
+      "request": "launch",
+      "program": "${workspaceFolder}/bin/executable.out",
+      "cwd": "${workspaceFolder}",
+      "MIMode": "lldb",
+      "externalConsole": true,
+      "environment": []
+    }
+  ]
+}
