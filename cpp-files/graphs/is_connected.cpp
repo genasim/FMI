@@ -1,4 +1,5 @@
-#define DOCTEST_CONFIG_IMPLEMENT
+#define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
+
 #include <fstream>
 #include <iostream>
 #include <map>
@@ -7,6 +8,7 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
+#include <functional>
 
 #include "../lib/doctest.h"
 
@@ -14,17 +16,6 @@ using namespace std;
 
 template <class T>
 using Graph = unordered_map<T, unordered_set<T>>;
-
-ostream& operator<<(ostream& os, const Graph<string>& graph) {
-    for (const auto& [vertex, neighbours] : graph) {
-        os << vertex << " -> ";
-        for (const auto& neighbour : neighbours) {
-            os << neighbour << " ";
-        }
-        os << endl;
-    }
-    return os;
-}
 
 bool is_connected_bfs(const Graph<string>& graph, const string& start,
                       const string& dest) {
@@ -60,7 +51,7 @@ bool is_connected_dfs(const Graph<string>& graph, const string& start,
         return true;
 
     unordered_set<string> visited;
-    auto helper = [&](auto&& self, string curr) -> bool {
+    function<bool(string)> helper = [&](string curr) -> bool {
         if (curr == dest)
             return true;
 
@@ -69,14 +60,14 @@ bool is_connected_dfs(const Graph<string>& graph, const string& start,
         visited.insert(curr);
 
         for (const string& neighbour : graph.at(curr)) {
-            if (self(self, neighbour))
+            if (helper(neighbour))
                 return true;
         }
         
         return false;
     };
 
-    return helper(helper, start);
+    return helper(start);
 }
 
 TEST_CASE("Graph traversals") {
@@ -105,9 +96,4 @@ TEST_CASE("Graph traversals") {
         
         CHECK(is_connected_bfs(graph, "K", "B"));
         CHECK(is_connected_dfs(graph, "K", "B"));
-}
-
-int main() {
-    doctest::Context().run();
-    return 0;
 }
