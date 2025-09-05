@@ -123,9 +123,12 @@ int main() {
     cout << "Path finding in weighted graph using Dijkstra's algorithm" << endl;
     {
         WeightedGraph<string, int> graph = {
-            {"A", {{"B", 1}, {"E", 3}, {"D", 5}}}, {"B", {{"A", 1}, {"C", 2}, {"D", 6}}},
-            {"C", {{"A", 4}, {"D", 1}}}, {"D", {{"B", 5}, {"C", 1}}},
-            {"E", {{"C", 2}}},           {"F", {}}};
+            {"A", {{"B", 1}, {"E", 3}, {"D", 5}}},
+            {"B", {{"A", 1}, {"C", 2}, {"D", 6}}},
+            {"C", {{"A", 4}, {"D", 1}}},
+            {"D", {{"B", 5}, {"C", 1}}},
+            {"E", {{"C", 2}}},
+            {"F", {}}};
 
         string start = "A", dest = "D";
         auto [path1, cost1] = shortest_path_dijkstra(graph, start, dest);

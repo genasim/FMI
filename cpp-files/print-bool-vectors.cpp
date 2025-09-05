@@ -4,7 +4,8 @@
 
 using namespace std;
 
-ostream& operator<<(ostream& os, const vector<int>& vec) {
+template <class T>
+ostream& operator<<(ostream& os, const vector<T>& vec) {
     os << "[ ";
     for (const auto& elem : vec) {
         os << elem;
@@ -14,13 +15,13 @@ ostream& operator<<(ostream& os, const vector<int>& vec) {
 }
 
 void printBoolVectors(size_t n) {
-    vector<int> boolVector(n, 0);
+    vector<unsigned short> boolVector(n, 0);
 
     while (true) {
         cout << boolVector << endl;
 
         int idx = n - 1;
-        while (boolVector[idx] == 1 && idx >= 0) {
+        while (idx >= 0 && boolVector[idx] == 1) {
             boolVector[idx] = 0;
             --idx;
         }
