@@ -1,18 +1,14 @@
-# FMI
-The `master` branch will remain empty on purpose.
+# Modern Java Technologies
+This is the branch for the `Modern Java Technologies` course
 
-To view source files for any given course check the individuals branches  
-Each course branch starts from the empty project folder in `master`  
+Open individual projects with the Intellij IDE from JetBrains; they should work out of the box. 
+- Projects use Java 25 SE
+> Won't add VSCode setup
 
-
-# Course branches Table
-| Course | Branch |
-| :---: | :---: |
-| *Intro to programming* | `intro-programming` |
-| *Object-oriented programming* | `oop` |
-| *Data Structures and Algorithms* | `dsa` |
-| *Functional programming* | `func-programming` |
-| *Full-stack with MERN* | `full-stack-mern` |
-| *JavaScript Advanced* | `js-advanced` |
-| *Applied OOP* | `aoop` |
-| *Modern Java technologies* | `mjt` |
+---
+# Checkout courses
+To view source files for any other files check out any of the other branches
+```bash
+git branch -r # List of all branches 
+git checkout <branch>
+```
