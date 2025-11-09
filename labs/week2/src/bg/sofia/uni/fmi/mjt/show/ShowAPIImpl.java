@@ -80,7 +80,7 @@ public class ShowAPIImpl implements ShowAPI {
                     new HumorousErgenka("Marta", (short) 23, 4, 4, 1)
             };
             EliminationRule[] defaults = {new LowestRatingEliminationRule()};
-            ShowAPIImpl show = new ShowAPIImpl(ergs, defaults);
+            ShowAPI show = new ShowAPIImpl(ergs, defaults);
 
             show.eliminateErgenkas(null);
             System.out.println("Case 1 (null rules): " + Arrays.toString(Arrays.stream(show.getErgenkas()).map(Ergenka::getName).toArray()));
@@ -95,7 +95,7 @@ public class ShowAPIImpl implements ShowAPI {
                     new RomanticErgenka("Ivanka", (short) 21, 7, 1, 2, "Rome"),
                     new HumorousErgenka("Debora", (short) 22, 1, 2, 2) // tie with R1
             };
-            ShowAPIImpl show = new ShowAPIImpl(ergs, new EliminationRule[]{new LowestRatingEliminationRule()});
+            ShowAPI show = new ShowAPIImpl(ergs, new EliminationRule[]{new LowestRatingEliminationRule()});
 
             show.eliminateErgenkas(null);
             System.out.println("Case 2: " + Arrays.toString(Arrays.stream(show.getErgenkas()).map(Ergenka::getName).toArray())); // expect ["H1"]
@@ -108,7 +108,7 @@ public class ShowAPIImpl implements ShowAPI {
                     new HumorousErgenka("Masha", (short) 26, 4, 4, 4), // sum = 8
                     new RomanticErgenka("Neli", (short) 25, 1, 3, 3, "Sofia"), // sum = 7
             };
-            ShowAPIImpl show = new ShowAPIImpl(ergs, null);
+            ShowAPI show = new ShowAPIImpl(ergs, null);
 
             show.eliminateErgenkas(new EliminationRule[]{new LowAttributeSumEliminationRule(8)});
             System.out.println("Case 3 (t=8): " + Arrays.toString(Arrays.stream(show.getErgenkas()).map(Ergenka::getName).toArray())); // expect ["H1","H2"]
@@ -120,7 +120,7 @@ public class ShowAPIImpl implements ShowAPI {
                     new RomanticErgenka("Mila", (short) 21, 8, 2, 4, "Paris"),
                     new HumorousErgenka("Nadya", (short) 22, 3, 6, 4)
             };
-            ShowAPIImpl show = new ShowAPIImpl(ergs, null);
+            ShowAPI show = new ShowAPIImpl(ergs, null);
 
             String[] votes = {"Leti", "Leti", "Mila", "Leti", "Nadya"};
             show.eliminateErgenkas(new EliminationRule[]{new PublicVoteEliminationRule(votes)});
@@ -134,7 +134,7 @@ public class ShowAPIImpl implements ShowAPI {
                     new HumorousErgenka("H2", (short) 22, 3, 6, 4)
             };
             String[] votes = {"R1", "H2", "H1", "R1", "H2"}; // R1=2, H2=2, H1=1 → no 50%+1
-            ShowAPIImpl show = new ShowAPIImpl(ergs, null);
+            ShowAPI show = new ShowAPIImpl(ergs, null);
 
             Ergenka[] before = show.getErgenkas();
             show.eliminateErgenkas(new EliminationRule[]{new PublicVoteEliminationRule(votes)});
@@ -148,7 +148,7 @@ public class ShowAPIImpl implements ShowAPI {
                     new HumorousErgenka("H90", (short) 20, 3, 6, 10), // duration 90 → +4 bonus
                     new HumorousErgenka("H91", (short) 20, 3, 6, 10)  // duration 91 → -3 bonus
             };
-            ShowAPIImpl show = new ShowAPIImpl(ergs, null);
+            ShowAPI show = new ShowAPIImpl(ergs, null);
 
             show.organizeDate(ergs[0], new DateEvent("X", 5, 29));
             show.organizeDate(ergs[1], new DateEvent("X", 5, 30));
