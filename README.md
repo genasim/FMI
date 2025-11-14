@@ -15,4 +15,4 @@ Each course branch starts from the empty project folder in `master`
 | *Full-stack with MERN* | `full-stack-mern` |
 | *JavaScript Advanced* | `js-advanced` |
 | *Applied OOP* | `aoop` |
-| *Modern Java technologies* | `mjt` |
+| *Modern Java technologies* | `java` |
