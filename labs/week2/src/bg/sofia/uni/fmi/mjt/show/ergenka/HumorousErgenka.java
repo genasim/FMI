@@ -9,7 +9,7 @@ public class HumorousErgenka extends Participant {
 
     @Override
     public void reactToDate(DateEvent dateEvent) {
-        int baseRating = (getHumorLevel() * 5) / dateEvent.getTensionLevel() + getRomanceLevel() / 3;
+        int baseRating = (getHumorLevel() * 5) / dateEvent.getTensionLevel() + Math.floorDiv(getRomanceLevel(), 3);
 
         int bonus = 0;
         if (dateEvent.getDuration() < 30) {

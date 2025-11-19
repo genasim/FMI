@@ -17,7 +17,7 @@ public class LowestRatingEliminationRule implements EliminationRule {
                 continue;
             }
 
-            if (lowestRating == ergenkas[i].getRating()) {
+            if (ergenkas[i] == null || lowestRating == ergenkas[i].getRating()) {
                 length--;
             }
         }

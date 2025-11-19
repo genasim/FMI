@@ -83,11 +83,7 @@ public class DateEvent {
     public DateEvent(String location, int tensionLevel, int duration) {
         this.location = location;
         this.duration = duration;
-        if (tensionLevel < TENSION_LEVEL_MIN) {
-            this.tensionLevel = TENSION_LEVEL_MIN;
-        } else {
-            this.tensionLevel = Math.min(tensionLevel, TENSION_LEVEL_MAX);
-        }
+        this.tensionLevel = Math.clamp(tensionLevel, TENSION_LEVEL_MIN, TENSION_LEVEL_MAX);
     }
 
     public String getLocation() {
@@ -110,7 +106,7 @@ public class DateEvent {
 void eliminateErgenkas(EliminationRule[] eliminationRules)
 ```
 
-Ако масивът с правила е празен, да се приложат правилата по подразбиране.
+Ако масивът с правила е празен, да се приложи `LowestRatingEliminationRule`.
 
 ## Ergenka
 
@@ -160,7 +156,7 @@ public interface Ergenka {
     int getHumorLevel();
 
     /**
-     * Returns the ergenka's current rating.
+     * Returns the ergenka's current rating. It can be below zero(🥀).
      *
      * @return the rating as an integer
      */

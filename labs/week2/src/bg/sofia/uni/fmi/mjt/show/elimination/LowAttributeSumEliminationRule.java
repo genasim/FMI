@@ -20,7 +20,13 @@ public class LowAttributeSumEliminationRule implements EliminationRule {
         }
 
         int length = ergenkas.length;
+        int nulls = 0;
         for (Ergenka ergenka : ergenkas) {
+            if (ergenka == null) {
+                nulls++;
+                continue;
+            }
+
             if (ergenka.getHumorLevel() + ergenka.getRomanceLevel() < getThreshold()) {
                 length--;
             }
@@ -29,6 +35,13 @@ public class LowAttributeSumEliminationRule implements EliminationRule {
         Ergenka[] remaining = new Ergenka[length];
         int idx = 0;
         for (Ergenka ergenka : ergenkas) {
+            if (ergenka == null) {
+                if (nulls > 0) {
+                    remaining[length - nulls] = null;
+                    nulls--;
+                }
+                continue;
+            }
             if (ergenka.getHumorLevel() + ergenka.getRomanceLevel() >= getThreshold()) {
                 remaining[idx++] = ergenka;
             }

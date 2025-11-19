@@ -12,7 +12,7 @@ public class RomanticErgenka extends Participant {
 
     @Override
     public void reactToDate(DateEvent dateEvent) {
-        int baseRating = (getRomanceLevel() * 7) / dateEvent.getTensionLevel() + getHumorLevel() / 3;
+        int baseRating = (getRomanceLevel() * 7) / dateEvent.getTensionLevel() + Math.floorDiv(getHumorLevel(), 3);
 
         int bonus = 0;
         if (dateEvent.getLocation().equalsIgnoreCase(favoriteDateLocation)) {

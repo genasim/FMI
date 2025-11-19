@@ -40,6 +40,10 @@ public class PublicVoteEliminationRule implements EliminationRule {
         String majorityVote = null;
         int counter = 0;
         for (String vote : votes) {
+            if (vote == null) {
+                continue;
+            }
+
             if (counter == 0) {
                 majorityVote = vote;
                 counter++;
