@@ -1,7 +1,7 @@
 package bg.sofia.uni.fmi.mjt.imagekit.algorithm;
 
 public enum ImageFormat {
-    JPEG(".jpeg"), PNG(".png"), BMP(".bmp");
+    JPEG("jpeg"), PNG("png"), BMP("bmp");
 
     private final String extension;
 

@@ -1,5 +1,9 @@
 package bg.sofia.uni.fmi.mjt.imagekit.algorithm;
 
+import bg.sofia.uni.fmi.mjt.imagekit.algorithm.detection.SobelEdgeDetection;
+import bg.sofia.uni.fmi.mjt.imagekit.algorithm.grayscale.LuminosityGrayscale;
+import bg.sofia.uni.fmi.mjt.imagekit.cli.AlgorithmType;
+
 import java.awt.image.BufferedImage;
 
 /**
@@ -15,4 +19,11 @@ public interface ImageAlgorithm {
      * @throws IllegalArgumentException if the image is null
      */
     BufferedImage process(BufferedImage image);
+
+    static ImageAlgorithm create(AlgorithmType algorithmType) {
+        return switch (algorithmType) {
+            case GRAYSCALE -> new LuminosityGrayscale();
+            case EDGES -> new SobelEdgeDetection(new LuminosityGrayscale());
+        };
+    }
 }
