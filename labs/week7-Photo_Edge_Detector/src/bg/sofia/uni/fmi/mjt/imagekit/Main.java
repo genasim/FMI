@@ -22,9 +22,6 @@ public class Main {
         Path input = Paths.get(args[0]);
         Path output = Paths.get(args[1]);
 
-//        Path input = Path.of("resources/car.jpeg");
-//        Path output = Path.of("resources/car-gray.jpeg");
-
         FileSystemImageManager fileManager = new LocalFileSystemImageManager();
         BufferedImage image = null;
         try {
@@ -39,7 +36,6 @@ public class Main {
         }
 
         AlgorithmType algorithmType = parseAlgorithmType(args[3]);
-//        AlgorithmType algorithmType = AlgorithmType.GRAYSCALE;
         ImageAlgorithm imageAlgorithm = ImageAlgorithm.create(algorithmType);
 
         BufferedImage processedImage = imageAlgorithm.process(image);

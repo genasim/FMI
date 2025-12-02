@@ -5,6 +5,23 @@ import bg.sofia.uni.fmi.mjt.imagekit.algorithm.ImageAlgorithm;
 import java.awt.image.BufferedImage;
 
 public class SobelEdgeDetection implements EdgeDetectionAlgorithm {
+    private final static int RED_OFFSET = 16;
+    private final static int GREEN_OFFSET = 8;
+    private final static int BLUE_OFFSET = 0;
+
+    // the two kernels are fixed well-known matrices;
+    private static final int[][] HORIZONTAL_KERNEL = new int[][] {
+        {-1, 0, 1},
+        {-2, 0, 2},
+        {-1, 0, 1}
+    };
+    private static final int[][] VERTICAL_KERNEL = new int[][] {
+        {-1, -2, -1},
+        {0, 0, 0},
+        {1, 2, 1}
+    };
+    private static final int KERNEL_SIZE = 3;
+
     private final ImageAlgorithm grayscaleAlgorithm;
 
     public SobelEdgeDetection(ImageAlgorithm grayscaleAlgorithm) {
@@ -19,6 +36,66 @@ public class SobelEdgeDetection implements EdgeDetectionAlgorithm {
         if (image == null) {
             throw new IllegalArgumentException("Cannot process null image");
         }
-        return null;
+
+        BufferedImage grayscaleImage = grayscaleAlgorithm.process(image);
+        int[][] intensityMatrix = getPixelIntensityMatrix(grayscaleImage);
+
+        BufferedImage edgesImage =
+            new BufferedImage(grayscaleImage.getWidth(), grayscaleImage.getHeight(), BufferedImage.TYPE_INT_RGB);
+        for (int x = 0; x < grayscaleImage.getWidth(); x++) {
+            for (int y = 0; y < grayscaleImage.getHeight(); y++) {
+                int[][] region = getPixelRegion(x, y, intensityMatrix);
+
+                int horizontal = convolute(region, HORIZONTAL_KERNEL);
+                int vertical = convolute(region, VERTICAL_KERNEL);
+
+                double gradient = Math.sqrt(horizontal * horizontal + vertical * vertical);
+                int pixelValue = Math.clamp(Math.round(gradient), 0, 255);
+
+                int rbg = (pixelValue << RED_OFFSET) | (pixelValue << GREEN_OFFSET) | (pixelValue << BLUE_OFFSET);
+                edgesImage.setRGB(x, y, rbg);
+            }
+        }
+
+        return edgesImage;
+    }
+
+    private static int[][] getPixelIntensityMatrix(BufferedImage image) {
+        int channelMask = 0x000000FF;
+        int[][] matrix = new int[image.getWidth()][image.getHeight()];
+        for (int x = 0; x < image.getWidth(); x++) {
+            for (int y = 0; y < image.getHeight(); y++) {
+                matrix[x][y] = image.getRGB(x, y) & channelMask;
+            }
+        }
+        return matrix;
+    }
+
+    private static int[][] getPixelRegion(int x, int y, int[][] intensityMatrix) {
+        int width = intensityMatrix.length;
+        int height = intensityMatrix[0].length;
+
+        int[][] region = new int[KERNEL_SIZE][KERNEL_SIZE];
+        for (int i = 0; i < KERNEL_SIZE; i++) {
+            for (int j = 0; j < KERNEL_SIZE; j++) {
+                int ix = Math.clamp(x - 1 + i, 0, width - 1);
+                int iy = Math.clamp(y - 1 + j, 0, height - 1);
+
+                boolean isWithinBounds =
+                    ix >= 0 && iy >= 0 && ix < width && iy < height;
+                region[i][j] = isWithinBounds ? intensityMatrix[ix][iy] : 0;
+            }
+        }
+        return region;
+    }
+
+    private static int convolute(int[][] matrix, int[][] kernel) {
+        int convolution = 0;
+        for (int i = 0; i < KERNEL_SIZE; i++) {
+            for (int j = 0; j < KERNEL_SIZE; j++) {
+                convolution += matrix[i][j] * kernel[i][j];
+            }
+        }
+        return convolution;
     }
 }

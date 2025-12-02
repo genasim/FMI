@@ -7,6 +7,10 @@ public class LuminosityGrayscale implements GrayscaleAlgorithm {
     private final static float GREEN_FACTOR = 0.72f;
     private final static float BLUE_FACTOR = 0.07f;
 
+    private final static int RED_OFFSET = 16;
+    private final static int GREEN_OFFSET = 8;
+    private final static int BLUE_OFFSET = 0;
+
     @Override
     public BufferedImage process(BufferedImage image) {
         if (image == null) {
@@ -36,6 +40,6 @@ public class LuminosityGrayscale implements GrayscaleAlgorithm {
         float factoredValue = RED_FACTOR * red + GREEN_FACTOR * green + BLUE_FACTOR * blue;
         int value = Math.clamp(Math.round(factoredValue), 0, 255);
 
-        return (value << 16) | (value << 8) | value;
+        return (value << RED_OFFSET) | (value << GREEN_OFFSET) | (value << BLUE_OFFSET);
     }
 }
