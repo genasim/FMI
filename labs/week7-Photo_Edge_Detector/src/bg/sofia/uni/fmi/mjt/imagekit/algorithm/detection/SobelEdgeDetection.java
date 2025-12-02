@@ -1,21 +1,18 @@
 package bg.sofia.uni.fmi.mjt.imagekit.algorithm.detection;
 
 import bg.sofia.uni.fmi.mjt.imagekit.algorithm.ImageAlgorithm;
+import bg.sofia.uni.fmi.mjt.imagekit.algorithm.pixels.PixelUtils;
 
 import java.awt.image.BufferedImage;
 
 public class SobelEdgeDetection implements EdgeDetectionAlgorithm {
-    private final static int RED_OFFSET = 16;
-    private final static int GREEN_OFFSET = 8;
-    private final static int BLUE_OFFSET = 0;
-
     // the two kernels are fixed well-known matrices;
-    private static final int[][] HORIZONTAL_KERNEL = new int[][] {
+    private static final short[][] HORIZONTAL_KERNEL = new short[][] {
         {-1, 0, 1},
         {-2, 0, 2},
         {-1, 0, 1}
     };
-    private static final int[][] VERTICAL_KERNEL = new int[][] {
+    private static final short[][] VERTICAL_KERNEL = new short[][] {
         {-1, -2, -1},
         {0, 0, 0},
         {1, 2, 1}
@@ -38,21 +35,19 @@ public class SobelEdgeDetection implements EdgeDetectionAlgorithm {
         }
 
         BufferedImage grayscaleImage = grayscaleAlgorithm.process(image);
-        int[][] intensityMatrix = getPixelIntensityMatrix(grayscaleImage);
+        short[][] intensityMatrix = getPixelIntensityMatrix(grayscaleImage);
 
         BufferedImage edgesImage =
             new BufferedImage(grayscaleImage.getWidth(), grayscaleImage.getHeight(), BufferedImage.TYPE_INT_RGB);
         for (int x = 0; x < grayscaleImage.getWidth(); x++) {
             for (int y = 0; y < grayscaleImage.getHeight(); y++) {
-                int[][] region = getPixelRegion(x, y, intensityMatrix);
+                short[][] region = getPixelRegion(x, y, intensityMatrix);
 
                 int horizontal = convolute(region, HORIZONTAL_KERNEL);
                 int vertical = convolute(region, VERTICAL_KERNEL);
 
                 double gradient = Math.sqrt(horizontal * horizontal + vertical * vertical);
-                int pixelValue = Math.clamp(Math.round(gradient), 0, 255);
-
-                int rbg = (pixelValue << RED_OFFSET) | (pixelValue << GREEN_OFFSET) | (pixelValue << BLUE_OFFSET);
+                int rbg = PixelUtils.getRGBValue(gradient, gradient, gradient);
                 edgesImage.setRGB(x, y, rbg);
             }
         }
@@ -60,22 +55,21 @@ public class SobelEdgeDetection implements EdgeDetectionAlgorithm {
         return edgesImage;
     }
 
-    private static int[][] getPixelIntensityMatrix(BufferedImage image) {
-        int channelMask = 0x000000FF;
-        int[][] matrix = new int[image.getWidth()][image.getHeight()];
+    private static short[][] getPixelIntensityMatrix(BufferedImage image) {
+        short[][] matrix = new short[image.getWidth()][image.getHeight()];
         for (int x = 0; x < image.getWidth(); x++) {
             for (int y = 0; y < image.getHeight(); y++) {
-                matrix[x][y] = image.getRGB(x, y) & channelMask;
+                matrix[x][y] = PixelUtils.getGrayscaleValue(image.getRGB(x, y));
             }
         }
         return matrix;
     }
 
-    private static int[][] getPixelRegion(int x, int y, int[][] intensityMatrix) {
+    private static short[][] getPixelRegion(int x, int y, short[][] intensityMatrix) {
         int width = intensityMatrix.length;
         int height = intensityMatrix[0].length;
 
-        int[][] region = new int[KERNEL_SIZE][KERNEL_SIZE];
+        short[][] region = new short[KERNEL_SIZE][KERNEL_SIZE];
         for (int i = 0; i < KERNEL_SIZE; i++) {
             for (int j = 0; j < KERNEL_SIZE; j++) {
                 int ix = Math.clamp(x - 1 + i, 0, width - 1);
@@ -89,7 +83,7 @@ public class SobelEdgeDetection implements EdgeDetectionAlgorithm {
         return region;
     }
 
-    private static int convolute(int[][] matrix, int[][] kernel) {
+    private static int convolute(short[][] matrix, short[][] kernel) {
         int convolution = 0;
         for (int i = 0; i < KERNEL_SIZE; i++) {
             for (int j = 0; j < KERNEL_SIZE; j++) {

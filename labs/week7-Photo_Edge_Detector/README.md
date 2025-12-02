@@ -1,3 +1,15 @@
+# TO RUN THIS PROJECT AS A CLI TOOL
+* You need to have a JDK installed (this project was built with JDK 25).
+* Then run the `compile-imagkit.sh` script to compile the project to a runnable jar:
+```bash
+chmod +x compile-imagkit.sh # in case the script is not executable
+./compile-imagkit.sh
+```
+* Then simply run the `imagekit` script
+```bash
+./imagekit <input-image-path> <output-image-path> --algo <grayscale | edges>
+```
+
 # Photo Edge Detector :framed_picture:
 
 Тази седмица задачата ни е да разработим модули на библиотека за обработка на изображения. Библиотеката ще може да
@@ -5,7 +17,7 @@
 първата версия, клиентът иска функционалност за конвертиране на цветно изображение в черно-бяло и възможност за
 откриване на ръбовете в изображение.
 
-![Maserati Edge Detected](../lecture/images/07.12-maserati-edge-detected.png)
+![Maserati Edge Detected](./resources/car.jpeg)
 
 Библиотеката има два основни компонента:
 

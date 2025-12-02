@@ -1,15 +1,13 @@
 package bg.sofia.uni.fmi.mjt.imagekit.algorithm.grayscale;
 
+import bg.sofia.uni.fmi.mjt.imagekit.algorithm.pixels.PixelUtils;
+
 import java.awt.image.BufferedImage;
 
 public class LuminosityGrayscale implements GrayscaleAlgorithm {
-    private final static float RED_FACTOR = 0.21f;
-    private final static float GREEN_FACTOR = 0.72f;
-    private final static float BLUE_FACTOR = 0.07f;
-
-    private final static int RED_OFFSET = 16;
-    private final static int GREEN_OFFSET = 8;
-    private final static int BLUE_OFFSET = 0;
+    private static final float RED_FACTOR = 0.21f;
+    private static final float GREEN_FACTOR = 0.72f;
+    private static final float BLUE_FACTOR = 0.07f;
 
     @Override
     public BufferedImage process(BufferedImage image) {
@@ -33,13 +31,11 @@ public class LuminosityGrayscale implements GrayscaleAlgorithm {
     }
 
     private int processPixel(int rgb) {
-        int red = (rgb >> 16) & 0xFF;
-        int green = (rgb >> 8) & 0xFF;
-        int blue = rgb & 0xFF;
+        int red = PixelUtils.getRed(rgb);
+        int green = PixelUtils.getGreen(rgb);
+        int blue = PixelUtils.getBlue(rgb);
 
-        float factoredValue = RED_FACTOR * red + GREEN_FACTOR * green + BLUE_FACTOR * blue;
-        int value = Math.clamp(Math.round(factoredValue), 0, 255);
-
-        return (value << RED_OFFSET) | (value << GREEN_OFFSET) | (value << BLUE_OFFSET);
+        float value = RED_FACTOR * red + GREEN_FACTOR * green + BLUE_FACTOR * blue;
+        return PixelUtils.getRGBValue(value, value, value);
     }
 }
