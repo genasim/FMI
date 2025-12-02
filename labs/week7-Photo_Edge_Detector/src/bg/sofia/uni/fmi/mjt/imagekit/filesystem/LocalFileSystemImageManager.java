@@ -66,6 +66,7 @@ public class LocalFileSystemImageManager implements FileSystemImageManager {
 
         return switch (extension) {
             case "jpeg" -> ImageFormat.JPEG;
+            case "jpg" -> ImageFormat.JPG;
             case "png" -> ImageFormat.PNG;
             case "bmp" -> ImageFormat.BMP;
             default -> throw new IllegalImageFormatException(extension);

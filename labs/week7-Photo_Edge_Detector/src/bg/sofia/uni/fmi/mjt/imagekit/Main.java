@@ -1,7 +1,7 @@
 package bg.sofia.uni.fmi.mjt.imagekit;
 
+import bg.sofia.uni.fmi.mjt.imagekit.algorithm.ImageAlgorithm;
 import bg.sofia.uni.fmi.mjt.imagekit.cli.AlgorithmType;
-import bg.sofia.uni.fmi.mjt.imagekit.cli.exceptions.IllegalImageFormatException;
 import bg.sofia.uni.fmi.mjt.imagekit.filesystem.FileSystemImageManager;
 import bg.sofia.uni.fmi.mjt.imagekit.filesystem.LocalFileSystemImageManager;
 
@@ -23,7 +23,7 @@ public class Main {
         Path output = Paths.get(args[1]);
 
 //        Path input = Path.of("resources/car.jpeg");
-//        Path output = Path.of("resources/car__qwe.jpeg");
+//        Path output = Path.of("resources/car-gray.jpeg");
 
         FileSystemImageManager fileManager = new LocalFileSystemImageManager();
         BufferedImage image = null;
@@ -38,13 +38,14 @@ public class Main {
             System.exit(2);
         }
 
-//        AlgorithmType algorithmType = parseAlgorithmType(args[3]);
-//        ImageAlgorithm imageAlgorithm = ImageAlgorithm.create(algorithmType);
+        AlgorithmType algorithmType = parseAlgorithmType(args[3]);
+//        AlgorithmType algorithmType = AlgorithmType.GRAYSCALE;
+        ImageAlgorithm imageAlgorithm = ImageAlgorithm.create(algorithmType);
 
-//        BufferedImage processedImage = imageAlgorithm.process(image);
+        BufferedImage processedImage = imageAlgorithm.process(image);
 
         try {
-            fileManager.saveImage(image, output.toFile());
+            fileManager.saveImage(processedImage, output.toFile());
             System.out.println("Wrote processed image to " + output.toFile().getAbsolutePath());
         } catch (FileNotFoundException e) {
             System.err.println("Could not write processed image to " + output.toFile().getAbsolutePath());

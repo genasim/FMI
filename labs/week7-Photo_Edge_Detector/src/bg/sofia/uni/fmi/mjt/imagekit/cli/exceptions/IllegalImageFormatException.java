@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 public class IllegalImageFormatException extends RuntimeException {
     public IllegalImageFormatException(String imageFormat) {
-        super("Invalid image format: " + imageFormat + ". Supported formats: " + Arrays.toString(ImageFormat.values()));
+        super("Invalid image format: " + imageFormat + " Supported formats: " + Arrays.toString(ImageFormat.values()));
     }
 
     public IllegalImageFormatException(String message, Throwable cause) {
