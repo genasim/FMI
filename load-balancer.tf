@@ -1,7 +1,7 @@
 resource "aws_lb" "test" {
   name               = "test-lb-tf"
   internal           = false
-  load_balancer_type = "application"
+  load_balancer_type = "application" bun create bun create elysia app  elysia app 
   security_groups    = [aws_security_group.allow_public-access_to_lb.id]
   subnets            = module.vpc.public_subnets
 
