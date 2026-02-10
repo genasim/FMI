@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE AutoService SYSTEM "autoservice.dtd">
+<AutoService name="АвтоСервиз_Люлин">
+  <Employees>
+    <Mechanic mechanicID="M101" specialty="Ходова част">
+      <FirstName>Георги</FirstName>
+      <LastName>Стоянов</LastName>
+      <Specialization>Окачване и спирачки</Specialization>
+      <Experience>9 години</Experience>
+      <Phone>0888123456</Phone>
+    </Mechanic>
+    <Mechanic mechanicID="M102" specialty="Климатик">
+      <FirstName>Петър</FirstName>
+      <LastName>Георгиев</LastName>
+      <Specialization>Климатични системи</Specialization>
+      <Experience>6 години</Experience>
+      <Phone>0888777666</Phone>
+    </Mechanic>
+  </Employees>
+
+  <Customers>
+    <Customer customerID="C101">
+      <FirstName>Николай</FirstName>
+      <LastName>Димитров</LastName>
+      <Phone>0899111222</Phone>
+      <Email>nikolay.dimitrov@example.com</Email>
+      <Address>София, ж.к. Люлин 5</Address>
+    </Customer>
+    <Customer customerID="C102">
+      <FirstName>Елена</FirstName>
+      <LastName>Костова</LastName>
+      <Phone>0887000111</Phone>
+      <Email>elena.kostova@example.com</Email>
+      <Address>София, ж.к. Люлин 10</Address>
+    </Customer>
+  </Customers>
+
+  <Vehicles>
+    <Vehicle VIN="VIN_LYULIN001" year="2012">
+      <Make>Volkswagen</Make>
+      <Model>Golf</Model>
+      <RegistrationNumber>CA7788KK</RegistrationNumber>
+    </Vehicle>
+    <Vehicle VIN="VIN_LYULIN002" year="2016">
+      <Make>Opel</Make>
+      <Model>Astra</Model>
+      <RegistrationNumber>CA1122PP</RegistrationNumber>
+    </Vehicle>
+  </Vehicles>
+
+  <Services>
+    <Service serviceID="S101">
+      <Description>Диагностика на ходова част</Description>
+      <Price>40</Price>
+    </Service>
+    <Service serviceID="S102">
+      <Description>Зареждане на климатик</Description>
+      <Price>60</Price>
+    </Service>
+  </Services>
+
+  <Repairs>
+    <Repair status="open">
+      <CustomerRef customerID="C101"/>
+      <VehicleRef VIN="VIN_LYULIN001"/>
+      <MechanicRef mechanicID="M101"/>
+      <ServiceRef serviceID="S101"/>
+      <StartDate>2025-10-12</StartDate>
+      <TotalCost>40</TotalCost>
+    </Repair>
+
+    <Repair status="in_progress">
+      <CustomerRef customerID="C102"/>
+      <VehicleRef VIN="VIN_LYULIN002"/>
+      <MechanicRef mechanicID="M102"/>
+      <ServiceRef serviceID="S102"/>
+      <StartDate>2025-10-13</StartDate>
+      <UsedParts>
+        <Part partID="P101">
+          <PartName>О-пръстен за климатик</PartName>
+          <Quantity>2</Quantity>
+          <PartPrice>3</PartPrice>
+        </Part>
+      </UsedParts>
+      <TotalCost>66</TotalCost>
+    </Repair>
+  </Repairs>
+</AutoService>

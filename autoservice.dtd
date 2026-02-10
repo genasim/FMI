@@ -1,0 +1,66 @@
+<!ELEMENT AutoService (Employees, Customers, Vehicles, Services, Repairs)>
+<!ATTLIST AutoService
+    name CDATA #REQUIRED>
+
+<!ELEMENT Employees (Mechanic+)>
+<!ELEMENT Mechanic (FirstName, LastName, Specialization, Experience, Phone)>
+<!ATTLIST Mechanic
+    mechanicID ID #REQUIRED
+    specialty CDATA #IMPLIED>
+<!ELEMENT FirstName (#PCDATA)>
+<!ELEMENT LastName (#PCDATA)>
+<!ELEMENT Specialization (#PCDATA)>
+<!ELEMENT Experience (#PCDATA)>
+<!ELEMENT Phone (#PCDATA)>
+
+<!ELEMENT Customers (Customer+)>
+<!ELEMENT Customer (FirstName, LastName, Phone, Email, Address)>
+<!ATTLIST Customer
+    customerID ID #REQUIRED>
+<!ELEMENT Email (#PCDATA)>
+<!ELEMENT Address (#PCDATA)>
+
+<!ELEMENT Vehicles (Vehicle+)>
+<!ELEMENT Vehicle (Make, Model, RegistrationNumber)>
+<!ATTLIST Vehicle
+    VIN ID #REQUIRED
+    year CDATA #IMPLIED>
+<!ELEMENT Make (#PCDATA)>
+<!ELEMENT Model (#PCDATA)>
+<!ELEMENT RegistrationNumber (#PCDATA)>
+
+<!ELEMENT Services (Service+)>
+<!ELEMENT Service (Description, Price)>
+<!ATTLIST Service
+    serviceID ID #REQUIRED>
+<!ELEMENT Description (#PCDATA)>
+<!ELEMENT Price (#PCDATA)>
+
+<!-- Референции (IDREF) за Repair -->
+<!ELEMENT CustomerRef EMPTY>
+<!ATTLIST CustomerRef customerID IDREF #REQUIRED>
+
+<!ELEMENT VehicleRef EMPTY>
+<!ATTLIST VehicleRef VIN IDREF #REQUIRED>
+
+<!ELEMENT MechanicRef EMPTY>
+<!ATTLIST MechanicRef mechanicID IDREF #REQUIRED>
+
+<!ELEMENT ServiceRef EMPTY>
+<!ATTLIST ServiceRef serviceID IDREF #REQUIRED>
+
+<!ELEMENT Repairs (Repair+)>
+<!ELEMENT Repair (CustomerRef, VehicleRef, MechanicRef, ServiceRef+, StartDate, EndDate?, UsedParts?, TotalCost)>
+<!ATTLIST Repair
+    status (open | in_progress | completed) "open">
+<!ELEMENT StartDate (#PCDATA)>
+<!ELEMENT EndDate (#PCDATA)>
+<!ELEMENT TotalCost (#PCDATA)>
+
+<!ELEMENT UsedParts (Part+)>
+<!ELEMENT Part (PartName, Quantity, PartPrice)>
+<!ATTLIST Part
+    partID ID #IMPLIED>
+<!ELEMENT PartName (#PCDATA)>
+<!ELEMENT Quantity (#PCDATA)>
+<!ELEMENT PartPrice (#PCDATA)>

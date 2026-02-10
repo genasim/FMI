@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8" />
+  <title>DOM конструиране на AutoService.xml</title>
+  <style>
+    body { font-family: system-ui, Arial, sans-serif; margin: 20px; }
+    pre { padding: 12px; border: 1px solid #ccc; background: #fafafa; overflow: auto; }
+    button { padding: 8px 12px; }
+  </style>
+</head>
+<body>
+  <h1>DOM конструиране (AutoService) + сериализация</h1>
+  <button id="btn">Генерирай XML</button>
+  <pre id="out"></pre>
+
+  <script>
+    function el(doc, name, text) {
+      const e = doc.createElement(name);
+      if (text !== undefined) e.appendChild(doc.createTextNode(text));
+      return e;
+    }
+
+    function buildAutoServiceXML() {
+      const doctype = document.implementation.createDocumentType(
+        "AutoService",
+        "",
+        "autoservice.dtd"
+      );
+
+      const xml = document.implementation.createDocument(null, "AutoService", doctype);
+      const root = xml.documentElement;
+      root.setAttribute("name", "АвтоСервиз_DOM_Екземпляр");
+
+      // Employees
+      const employees = el(xml, "Employees");
+      const mech = el(xml, "Mechanic");
+      mech.setAttribute("mechanicID", "M901");
+      mech.setAttribute("specialty", "Диагностика");
+      mech.appendChild(el(xml, "FirstName", "Никола"));
+      mech.appendChild(el(xml, "LastName", "Ганчев"));
+      mech.appendChild(el(xml, "Specialization", "Компютърна диагностика"));
+      mech.appendChild(el(xml, "Experience", "3 години"));
+      mech.appendChild(el(xml, "Phone", "0888123123"));
+      employees.appendChild(mech);
+      root.appendChild(employees);
+
+      // Customers
+      const customers = el(xml, "Customers");
+      const cust = el(xml, "Customer");
+      cust.setAttribute("customerID", "C901");
+      cust.appendChild(el(xml, "FirstName", "Виктория"));
+      cust.appendChild(el(xml, "LastName", "Кирова"));
+      cust.appendChild(el(xml, "Phone", "0899000222"));
+      cust.appendChild(el(xml, "Email", "viktoria.kirova@example.com"));
+      cust.appendChild(el(xml, "Address", "София, ул. Цар Самуил 15"));
+      customers.appendChild(cust);
+      root.appendChild(customers);
+
+      // Vehicles
+      const vehicles = el(xml, "Vehicles");
+      const veh = el(xml, "Vehicle");
+      veh.setAttribute("VIN", "VIN_DOM001");
+      veh.setAttribute("year", "2017");
+      veh.appendChild(el(xml, "Make", "Ford"));
+      veh.appendChild(el(xml, "Model", "Focus"));
+      veh.appendChild(el(xml, "RegistrationNumber", "CA9090VV"));
+      vehicles.appendChild(veh);
+      root.appendChild(vehicles);
+
+      // Services
+      const services = el(xml, "Services");
+      const svc = el(xml, "Service");
+      svc.setAttribute("serviceID", "S901");
+      svc.appendChild(el(xml, "Description", "Проверка и диагностика на грешки"));
+      svc.appendChild(el(xml, "Price", "45"));
+      services.appendChild(svc);
+      root.appendChild(services);
+
+      // Repairs
+      const repairs = el(xml, "Repairs");
+      const repair = el(xml, "Repair");
+      repair.setAttribute("status", "open");
+
+      const customerRef = el(xml, "CustomerRef");
+      customerRef.setAttribute("customerID", "C901");
+
+      const vehicleRef = el(xml, "VehicleRef");
+      vehicleRef.setAttribute("VIN", "VIN_DOM001");
+
+      const mechanicRef = el(xml, "MechanicRef");
+      mechanicRef.setAttribute("mechanicID", "M901");
+
+      const serviceRef = el(xml, "ServiceRef");
+      serviceRef.setAttribute("serviceID", "S901");
+
+      repair.appendChild(customerRef);
+      repair.appendChild(vehicleRef);
+      repair.appendChild(mechanicRef);
+      repair.appendChild(serviceRef);
+      repair.appendChild(el(xml, "StartDate", "2025-10-16"));
+      repair.appendChild(el(xml, "TotalCost", "45"));
+
+      repairs.appendChild(repair);
+      root.appendChild(repairs);
+
+      return xml;
+    }
+
+    document.getElementById("btn").addEventListener("click", () => {
+      const xml = buildAutoServiceXML();
+      const s = new XMLSerializer().serializeToString(xml);
+      document.getElementById("out").textContent = s;
+    });
+  </script>
+</body>
+</html>

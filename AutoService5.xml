@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE AutoService SYSTEM "autoservice.dtd">
+<AutoService name="АвтоСервиз_Варна_Демо">
+  <Employees>
+    <Mechanic mechanicID="M401" specialty="Гуми">
+      <FirstName>Кирил</FirstName>
+      <LastName>Павлов</LastName>
+      <Specialization>Гуми и баланс</Specialization>
+      <Experience>8 години</Experience>
+      <Phone>0877000111</Phone>
+    </Mechanic>
+  </Employees>
+
+  <Customers>
+    <Customer customerID="C401">
+      <FirstName>Антония</FirstName>
+      <LastName>Пенева</LastName>
+      <Phone>0877333444</Phone>
+      <Email>antonia.peneva@example.com</Email>
+      <Address>Варна, ул. Морска 7</Address>
+    </Customer>
+  </Customers>
+
+  <Vehicles>
+    <Vehicle VIN="VIN_VARNA001" year="2021">
+      <Make>Hyundai</Make>
+      <Model>i30</Model>
+      <RegistrationNumber>VAR1234AA</RegistrationNumber>
+    </Vehicle>
+  </Vehicles>
+
+  <Services>
+    <Service serviceID="S401">
+      <Description>Смяна и баланс на гуми</Description>
+      <Price>80</Price>
+    </Service>
+  </Services>
+
+  <Repairs>
+    <Repair status="open">
+      <CustomerRef customerID="C401"/>
+      <VehicleRef VIN="VIN_VARNA001"/>
+      <MechanicRef mechanicID="M401"/>
+      <ServiceRef serviceID="S401"/>
+      <StartDate>2025-10-15</StartDate>
+      <UsedParts>
+        <Part partID="P401">
+          <PartName>Вентил за гума</PartName>
+          <Quantity>4</Quantity>
+          <PartPrice>2</PartPrice>
+        </Part>
+      </UsedParts>
+      <TotalCost>88</TotalCost>
+    </Repair>
+  </Repairs>
+</AutoService>

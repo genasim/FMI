@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE AutoService SYSTEM "autoservice.dtd">
+<AutoService name="АвтоСервиз_Младост">
+  <Employees>
+    <Mechanic mechanicID="M201" specialty="Двигател">
+      <FirstName>Стефан</FirstName>
+      <LastName>Николов</LastName>
+      <Specialization>Бензинови двигатели</Specialization>
+      <Experience>12 години</Experience>
+      <Phone>0888121212</Phone>
+    </Mechanic>
+  </Employees>
+
+  <Customers>
+    <Customer customerID="C201">
+      <FirstName>Радослав</FirstName>
+      <LastName>Илиев</LastName>
+      <Phone>0888999000</Phone>
+      <Email>rado.iliev@example.com</Email>
+      <Address>София, ж.к. Младост 1</Address>
+    </Customer>
+  </Customers>
+
+  <Vehicles>
+    <Vehicle VIN="VIN_MLADOST001" year="2010">
+      <Make>Honda</Make>
+      <Model>Civic</Model>
+      <RegistrationNumber>CA4455TT</RegistrationNumber>
+    </Vehicle>
+  </Vehicles>
+
+  <Services>
+    <Service serviceID="S201">
+      <Description>Смяна на свещи</Description>
+      <Price>35</Price>
+    </Service>
+    <Service serviceID="S202">
+      <Description>Смяна на въздушен филтър</Description>
+      <Price>15</Price>
+    </Service>
+  </Services>
+
+  <Repairs>
+    <Repair status="completed">
+      <CustomerRef customerID="C201"/>
+      <VehicleRef VIN="VIN_MLADOST001"/>
+      <MechanicRef mechanicID="M201"/>
+      <ServiceRef serviceID="S201"/>
+      <ServiceRef serviceID="S202"/>
+      <StartDate>2025-10-08</StartDate>
+      <EndDate>2025-10-08</EndDate>
+      <UsedParts>
+        <Part partID="P201">
+          <PartName>Свещ</PartName>
+          <Quantity>4</Quantity>
+          <PartPrice>8</PartPrice>
+        </Part>
+        <Part partID="P202">
+          <PartName>Въздушен филтър</PartName>
+          <Quantity>1</Quantity>
+          <PartPrice>12</PartPrice>
+        </Part>
+      </UsedParts>
+      <TotalCost>79</TotalCost>
+    </Repair>
+  </Repairs>
+</AutoService>

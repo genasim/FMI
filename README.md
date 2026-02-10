@@ -1,20 +1,14 @@
-# FMI
-The `master` branch will remain empty on purpose.
+# XML Technologies
+This is the branch for the `XML Technologies` course
 
-To view source files for any given course check the individuals branches  
-Each course branch starts from the empty project folder in `master`  
+It contains sample `.xml` files that conform to a `.dtd` validation schema, documentation and presentation
+It also has some `XSLT` transformations available to generate `.html`, `.txt` or `.xml` files from the sample `.xml` files already present. 
+Use whatever tool you deem appropriate to apply the transformations (I used the `xslproc` CLI tool, part of the GNOME libraries)
 
-
-# Course branches Table
-| Course | Branch |
-| :---: | :---: |
-| *Intro to programming* | `intro-programming` |
-| *Object-oriented programming* | `oop` |
-| *Data Structures and Algorithms* | `dsa` |
-| *Modern Java technologies* | `java` |
-| *Functional programming* | `func-programming` |
-| *Full-stack with MERN* | `full-stack-mern` |
-| *Statistics* | `stats` |
-| *JavaScript Advanced* | `js-advanced` |
-| *Applied OOP* | `aoop` |
-| *XML technologies* | `xml` |
+---
+# Checkout courses
+To view source files for any other files check out any of the other branches
+```bash
+git branch -r # List of all branches 
+git checkout <branch>
+```

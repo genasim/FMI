@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE AutoService SYSTEM "autoservice.dtd">
+<AutoService name="АвтоСервиз_София_Център">
+  <Employees>
+    <Mechanic mechanicID="M001" specialty="Диагностика">
+      <FirstName>Иван</FirstName>
+      <LastName>Иванов</LastName>
+      <Specialization>Автоелектроника</Specialization>
+      <Experience>5 години</Experience>
+      <Phone>0888111222</Phone>
+    </Mechanic>
+  </Employees>
+
+  <Customers>
+    <Customer customerID="C001">
+      <FirstName>Мария</FirstName>
+      <LastName>Петрова</LastName>
+      <Phone>0888333444</Phone>
+      <Email>maria.petrova@example.com</Email>
+      <Address>София, ул. Примерна 1</Address>
+    </Customer>
+  </Customers>
+
+  <Vehicles>
+    <Vehicle VIN="VIN_ABC12345" year="2018">
+      <Make>Toyota</Make>
+      <Model>Corolla</Model>
+      <RegistrationNumber>CA1234AB</RegistrationNumber>
+    </Vehicle>
+  </Vehicles>
+
+  <Services>
+    <Service serviceID="S001">
+      <Description>Смяна на масло и филтър</Description>
+      <Price>50</Price>
+    </Service>
+  </Services>
+
+  <Repairs>
+    <Repair status="completed">
+      <CustomerRef customerID="C001"/>
+      <VehicleRef VIN="VIN_ABC12345"/>
+      <MechanicRef mechanicID="M001"/>
+      <ServiceRef serviceID="S001"/>
+      <StartDate>2025-10-10</StartDate>
+      <EndDate>2025-10-11</EndDate>
+      <UsedParts>
+        <Part partID="P001">
+          <PartName>Маслен филтър</PartName>
+          <Quantity>1</Quantity>
+          <PartPrice>15</PartPrice>
+        </Part>
+      </UsedParts>
+      <TotalCost>65</TotalCost>
+    </Repair>
+  </Repairs>
+</AutoService>

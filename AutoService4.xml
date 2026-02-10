@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE AutoService SYSTEM "autoservice.dtd">
+<AutoService name="АвтоСервиз_Пловдив_Демо">
+  <Employees>
+    <Mechanic mechanicID="M301" specialty="Електрика">
+      <FirstName>Владимир</FirstName>
+      <LastName>Колев</LastName>
+      <Specialization>Електрически инсталации</Specialization>
+      <Experience>7 години</Experience>
+      <Phone>0898000123</Phone>
+    </Mechanic>
+    <Mechanic mechanicID="M302" specialty="Обслужване">
+      <FirstName>Даниела</FirstName>
+      <LastName>Маринова</LastName>
+      <Specialization>Периодично обслужване</Specialization>
+      <Experience>4 години</Experience>
+      <Phone>0898000456</Phone>
+    </Mechanic>
+  </Employees>
+
+  <Customers>
+    <Customer customerID="C301">
+      <FirstName>Симеон</FirstName>
+      <LastName>Тодоров</LastName>
+      <Phone>0898123456</Phone>
+      <Email>simeon.todorov@example.com</Email>
+      <Address>Пловдив, ул. Централна 10</Address>
+    </Customer>
+    <Customer customerID="C302">
+      <FirstName>Галина</FirstName>
+      <LastName>Василева</LastName>
+      <Phone>0898333444</Phone>
+      <Email>galina.vasileva@example.com</Email>
+      <Address>Пловдив, бул. България 20</Address>
+    </Customer>
+  </Customers>
+
+  <Vehicles>
+    <Vehicle VIN="VIN_PLOVDIV001" year="2019">
+      <Make>Skoda</Make>
+      <Model>Octavia</Model>
+      <RegistrationNumber>PB1234AB</RegistrationNumber>
+    </Vehicle>
+    <Vehicle VIN="VIN_PLOVDIV002" year="2015">
+      <Make>Renault</Make>
+      <Model>Clio</Model>
+      <RegistrationNumber>PB7788CC</RegistrationNumber>
+    </Vehicle>
+  </Vehicles>
+
+  <Services>
+    <Service serviceID="S301">
+      <Description>Смяна на акумулатор</Description>
+      <Price>30</Price>
+    </Service>
+    <Service serviceID="S302">
+      <Description>Пълна диагностика</Description>
+      <Price>70</Price>
+    </Service>
+  </Services>
+
+  <Repairs>
+    <Repair status="in_progress">
+      <CustomerRef customerID="C301"/>
+      <VehicleRef VIN="VIN_PLOVDIV001"/>
+      <MechanicRef mechanicID="M301"/>
+      <ServiceRef serviceID="S302"/>
+      <StartDate>2025-10-14</StartDate>
+      <TotalCost>70</TotalCost>
+    </Repair>
+
+    <Repair status="completed">
+      <CustomerRef customerID="C302"/>
+      <VehicleRef VIN="VIN_PLOVDIV002"/>
+      <MechanicRef mechanicID="M302"/>
+      <ServiceRef serviceID="S301"/>
+      <StartDate>2025-10-05</StartDate>
+      <EndDate>2025-10-05</EndDate>
+      <UsedParts>
+        <Part partID="P301">
+          <PartName>Клеми за акумулатор</PartName>
+          <Quantity>1</Quantity>
+          <PartPrice>8</PartPrice>
+        </Part>
+      </UsedParts>
+      <TotalCost>38</TotalCost>
+    </Repair>
+  </Repairs>
+</AutoService>
