@@ -11,8 +11,10 @@ Each course branch starts from the empty project folder in `master`
 | *Intro to programming* | `intro-programming` |
 | *Object-oriented programming* | `oop` |
 | *Data Structures and Algorithms* | `dsa` |
+| *Modern Java technologies* | `java` |
 | *Functional programming* | `func-programming` |
 | *Full-stack with MERN* | `full-stack-mern` |
+| *Statistics* | `stats` |
 | *JavaScript Advanced* | `js-advanced` |
 | *Applied OOP* | `aoop` |
-| *Modern Java technologies* | `java` |
+| *XML technologies* | `xml` |
