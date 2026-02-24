@@ -12,6 +12,7 @@ Each course branch starts from the empty project folder in `master`
 | *Object-oriented programming* | `oop` |
 | *Data Structures and Algorithms* | `dsa` |
 | *Modern Java technologies* | `java` |
+| *Operating systems* | `os` |
 | *Functional programming* | `func-programming` |
 | *Full-stack with MERN* | `full-stack-mern` |
 | *Statistics* | `stats` |
